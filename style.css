@@ -656,15 +656,10 @@ p { font-size: clamp(12px, 1.4vw, 14px); line-height: 1.7; }
    KONTAKTSIDE
 ========================= */
 
-.contact-page {
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
 /* OVERSKRIFT */
 .contact-heading {
   text-align: center;
-  margin-bottom: 38px;
+  margin-bottom: 55px;
 }
 
 .contact-heading h2 {
@@ -681,7 +676,7 @@ p { font-size: clamp(12px, 1.4vw, 14px); line-height: 1.7; }
 
 /* HELE OMRÅDET */
 .contact-box {
-  max-width: 950px;
+  max-width: 100%;
   margin: 0 auto;
   /* ingen ramme rundt alt */
   border: none;
@@ -699,30 +694,49 @@ p { font-size: clamp(12px, 1.4vw, 14px); line-height: 1.7; }
 
   /* MELLOMROM MELLOM DE TO BOKSENE */
   gap: 28px;
+  position: relative;
+  padding: 10px 0 42px;
+  border-bottom: 1px solid var(--line);
+}
+
+/* vertikal strek i midten */
+.contact-people::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  bottom: 42px;
+  left: 50%;
+  width: 1px;
+  background: var(--line);
 }
 
 
 .contact-person {
-  min-height: 245px;
-  padding: 42px 45px 38px;
+  min-height: auto;
+  padding: 18px 40px 34px;
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
 
-  text-align: center;
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 10px;
+  text-align: left;
 }
 
-
-/* fjerner den gamle streken mellom kortene */
-
+/* Arild – skyv hele innholdet mot midten */
 .contact-person:first-child {
-  border-right: 1px solid var(--line);
+  align-items: flex-end;
+   padding-right: 0;
+}
+/* Anki – start fra midten */
+.contact-person:last-child {
+  align-items: flex-start;
 }
 /* NAVN */
+
+.contact-person > * {
+  width: 430px;
+  max-width: 100%;
+}
 
 .contact-person h3 {
   margin: 0 0 3px;
@@ -741,12 +755,10 @@ p { font-size: clamp(12px, 1.4vw, 14px); line-height: 1.7; }
 /* ROLLE */
 
 .contact-role {
-  margin: 0 0 24px;
-
+  margin: 0 0 20px;
   font-family: "Cormorant Garamond", serif;
   font-size: 20px;
   font-weight: 600;
-
   color: var(--brown);
   opacity: .90;
 }
@@ -755,25 +767,37 @@ p { font-size: clamp(12px, 1.4vw, 14px); line-height: 1.7; }
 /* TELEFON + E-POST */
 
 .contact-details {
-  display: flex;
+   display: flex;
   flex-direction: column;
-  gap: 13px;
-  padding: 10px;
+  gap: 12px;
 
-  width: fit-content;
+  width: 430px;
   max-width: 100%;
-
-  margin: 0 auto;
+  margin: 0;
+  padding: 0;          /* fjerner eventuell padding før ikonene */
+  gap: 14px;    
 
   text-align: left;
+}
+
+.contact-details a[href^="mailto:"] {
+  font-family: "Lora", serif;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.contact-details a[href^="tel:"] {
+  font-family: "Lora", serif;
+  font-size: 20px;
+  font-weight: 500;
 }
 
 
 .contact-details a {
   display: grid;
-  grid-template-columns: 24px 1fr;
+  grid-template-columns: 24px auto;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
 
   color: var(--brown);
   text-decoration: none;
@@ -781,13 +805,14 @@ p { font-size: clamp(12px, 1.4vw, 14px); line-height: 1.7; }
   font-size: 18px;
   font-weight: 500;
   line-height: 1.4;
-  padding-bottom: 14px;
+  padding: 0;
+  margin:0; 
 }
 
 .contact-icon {
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  align-items: left;
+  justify-content: left;
 
   width: 24px;
   font-size: 20px;
@@ -801,23 +826,20 @@ p { font-size: clamp(12px, 1.4vw, 14px); line-height: 1.7; }
 ========================= */
 
 .contact-address {
-  min-height: 95px;
-  /* LUFT MELLOM PERSONKORT OG ADRESSE */
-  margin-top: 28px;
-  padding: 24px 35px;
-  background: #f4f0ec;
-  border: 1px solid var(--line);
+  min-height: auto;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 18px;
-  border-radius: 10px;
+  /* LUFT MELLOM PERSONKORT OG ADRESSE */
+  padding: 40px 30px;
+  gap: 10px;
 }
 
 
 .contact-address p {
   margin: 0;
-  font-family: "Inter", sans-serif;  
+  font-family: "Lora", serif; 
   font-size: clamp(15px, 1.6vw, 18px);
   font-weight: 600;
   text-transform: uppercase;
@@ -826,15 +848,13 @@ p { font-size: clamp(12px, 1.4vw, 14px); line-height: 1.7; }
 }
 
 .address-icon {
-    display: flex;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
 .address-icon img {
-  width: 28px;
-  height: 28px;
-  display: block;
-  object-fit: contain;
+  width: 35px;
+  height: 35px;
 }
 /* =========================
    KART
@@ -842,17 +862,16 @@ p { font-size: clamp(12px, 1.4vw, 14px); line-height: 1.7; }
 .contact-map {
   width: 100%;
   /* LUFT MELLOM ADRESSE OG KART */
-  margin-top: 28px;
+  margin-top: 10px;
   border: 1px solid var(--line);
   overflow: hidden;
   background: #fff;
-  border-radius: 10px;
 }
 
 .contact-map iframe {
   display: block;
   width: 100%;
-  height: 500px;
+  height: 600px;
   border: 0;
   filter: grayscale(35%) sepia(8%);
 }

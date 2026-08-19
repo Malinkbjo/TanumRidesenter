@@ -415,64 +415,81 @@ iframe {
     padding-left: 20px;
   }
 
-  /* ---------- KONTAKT ---------- */
+ /* ---------- KONTAKT IPAD ---------- */
 
-  .contact-page {
-    width: 100%;
-  }
+.contact-page {
+  width: 100%;
+}
 
-  .contact-heading {
-    margin-bottom: 30px;
-  }
+.contact-heading {
+  margin-bottom: 30px;
+}
 
-  .contact-people {
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
+.contact-people {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+}
 
-  .contact-person {
-    min-height: 230px;
-    padding: 30px 20px;
-  }
+/* behold midtstreken */
+.contact-people::after {
+  display: block;
+}
 
-  .contact-person h3 {
-    font-size: 24px;
-  }
+.contact-person {
+  min-width: 0;
+  min-height: 230px;
+  padding: 25px 24px;
+}
 
-  .contact-role {
-    font-size: 18px;
-  }
+/* Litt mindre navn */
+.contact-person h3 {
+  font-size: 21px;
+  white-space: nowrap;
+}
 
-  .contact-details {
-    width: 100%;
-    padding: 6px 0;
-  }
+.contact-role {
+  font-size: 16px;
+  margin-bottom: 18px;
+}
 
-  .contact-details a {
-    width: 100%;
-    grid-template-columns: 22px minmax(0, 1fr);
-    gap: 10px;
-    font-size: 14px;
-    overflow-wrap: anywhere;
-  }
+.contact-details {
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+}
 
-  .contact-icon img {
-    width: 19px;
-    height: 19px;
-  }
+/* Telefon + e-post */
+.contact-details a {
+  width: 100%;
+  min-width: 0;
 
-  .contact-address {
-    min-height: 82px;
-    padding: 20px 24px;
-  }
+  grid-template-columns: 18px minmax(0, 1fr);
+  gap: 8px;
 
-  .contact-address p {
-    font-size: 15px;
-  }
+  font-size: 13px;
+  white-space: nowrap;
+}
 
-  .contact-map iframe {
-    height: 360px;
-  }
+.contact-icon img {
+  width: 17px;
+  height: 17px;
+}
+
+.contact-address {
+  min-height: 82px;
+  padding: 20px 24px;
+  text-align: center;
+}
+
+.contact-address p {
+  max-width: 100%;
+  font-size: 15px;
+  white-space: normal;
+}
+
+.contact-map iframe {
+  height: 360px;
+}
 
   /* ---------- FOOTER ---------- */
 
@@ -859,54 +876,77 @@ iframe {
     text-align: center;
   }
 
-  /* ---------- KONTAKT ---------- */
+  /* ---------- KONTAKT MOBIL ---------- */
 
-  .contact-heading h2 {
-    font-size: 27px;
-  }
+.contact-people {
+  grid-template-columns: 1fr;
+  gap: 0;
+}
 
-  .contact-people {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
+/* FJERN DEN VERTIKALE STREKEN */
+.contact-people::after {
+  display: none;
+}
 
-  .contact-person {
-    min-height: 0;
-    padding: 30px 20px;
-  }
+/* Hver person får hele bredden */
+.contact-person {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  padding: 28px 22px;
+  margin: 0;
+  align-items: flex-start;
+  text-align: left;
+}
 
-  .contact-person h3 {
-    font-size: 25px;
-  }
+/* Nullstill eventuell fast bredde fra desktop */
+.contact-person > * {
+  width: 100%;
+  max-width: 100%;
+}
 
-  .contact-role {
-    margin-bottom: 18px;
-    font-size: 17px;
-  }
+/* Kontaktinfo */
+.contact-details {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
 
-  .contact-details {
-    max-width: 100%;
-  }
+/* Telefon + e-post */
+.contact-details a {
+  width: 100%;
+  min-width: 0;
 
-  .contact-details a {
-    font-size: 14px;
-    padding-bottom: 10px;
-  }
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  align-items: center;
 
-  .contact-address {
-    margin-top: 18px;
-    min-height: 76px;
-    padding: 18px 16px;
-    gap: 12px;
-  }
+  gap: 10px;
 
-  .address-icon img {
-    width: 23px;
-    height: 23px;
-  }
+  font-size: 12px;
+  padding-bottom: 10px;
+}
+
+/* telefonnummer skal ikke brytes */
+.contact-details a[href^="tel:"] {
+  white-space: nowrap;
+}
+
+/* e-post får brytes hvis mobilen er veldig smal */
+.contact-details a[href^="mailto:"] {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.contact-icon img {
+  width: 18px;
+  height: 18px;
+}
 
   .contact-address p {
-    font-size: 13px;
+    font-size: 12px;
     letter-spacing: .08em;
     line-height: 1.45;
   }
