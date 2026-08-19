@@ -222,6 +222,7 @@ h3 { font-size: clamp(13px, 1.6vw, 16px); }
   max-width: none;
   margin: 0 auto;
   padding: clamp(34px, 7vw, 76px) clamp(20px, 7vw, 86px);
+  padding-bottom: 35px;
 }
 
 .page-section > h2 {
@@ -229,6 +230,8 @@ h3 { font-size: clamp(13px, 1.6vw, 16px); }
   font-weight: 700;
   letter-spacing: .08em;
   margin-bottom: 22px;
+
+  -webkit-text-stroke: 1px currentColor;
 }
 
 .heading-decoration {
@@ -267,7 +270,6 @@ h3 { font-size: clamp(13px, 1.6vw, 16px); }
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: clamp(24px, 5vw, 54px);
   align-items: center;
-  padding-bottom:  55px;
 }
 
 .split:nth-child(odd) img { order: 2; }
@@ -331,7 +333,8 @@ p { font-size: clamp(12px, 1.4vw, 14px); line-height: 1.7; }
 .gallery-carousel {
   position: relative;
   max-width: 1500px;
-  margin: 55px auto 0;
+  margin: 55px auto;
+  padding-bottom: 5px;
 }
 
 .carousel-track {
@@ -485,113 +488,156 @@ p { font-size: clamp(12px, 1.4vw, 14px); line-height: 1.7; }
   color: var(--brown);
 }
 
-/* TRENERE */
+/* =========================
+   TRENERKORT
+========================= */
+
 .trainer-grid {
+  width: 100%;
+  margin: 50px auto 0;
+
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 28px;
-  margin: 0 auto ;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
 }
 
 
-/* KORT */
+/* SELVE KORTET */
 
 .trainer-card {
-  width: 100%;
-  overflow: hidden;
   background: #fff;
   border: 1px solid var(--line);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
   border-radius: 10px;
-   min-height: 300px;
-  padding: 32px 36px;
+  box-shadow: 0 8px 24px rgba(55, 29, 16, 0.05);
 }
+
 
 /* BILDE */
+
 .trainer-image {
   width: 100%;
-  overflow: hidden;
-}
-
-.trainer-image img {
-  width: 100%;
-  aspect-ratio: 1.2 / 1;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   display: block;
 }
 
-/* TEKSTOMRÅDE */
+
+/* INNHOLD */
+
 .trainer-content {
-  padding: 20px 22px 24px;
+  padding: 24px 26px 28px;
+
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
+
 /* NAVN */
+
 .trainer-content h3 {
   margin: 0;
+
   font-family: "Cormorant Garamond", serif;
-  font-size: clamp(21px, 1.7vw, 26px);
+  font-size: 21px;
   font-weight: 700;
+  line-height: 1.1;
+
   text-align: center;
-  line-height: 1.05;
-  letter-spacing: .02em;
-  text-transform: none;
   color: var(--brown);
 }
+
+
+/* DRESSUR / SPRANG */
 
 .trainer-title {
   margin: 5px 0 0;
+
   font-family: "Cormorant Garamond", serif;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
+
   text-transform: uppercase;
-  letter-spacing: .08em;
-  color: var(--brown);
-  opacity: 90%;
+  letter-spacing: 0.08em;
+
   text-align: center;
-  padding-bottom: 10px;
+  color: var(--brown);
+  opacity: 0.75;
 }
+
+
+/* LITEN STREK */
+
+.trainer-line {
+  display: block;
+
+  width: 75%;
+  height: 1px;
+
+  margin: 14px auto 18px;
+
+  background:#cbb7a8;
+}
+
 
 /* BESKRIVELSE */
+
 .trainer-description {
-  margin: 0 0 16px;
+  margin: 0 0 24px;
+
   font-family: "Cormorant Garamond", serif;
-  font-size: 18px;
-  font-weight: 520;
-  line-height: 1.55;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.5;
+
   color: var(--brown);
 }
 
-/* DETALJER */
+
+/* PUNKTENE NEDERST */
+
 .trainer-details {
-  padding-top: 15px;
-  border-top: 1px solid var(--line);
+  margin-top: auto;
+
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 8px;
 }
 
 .trainer-details p {
   position: relative;
+
   margin: 0;
-  padding-left: 15px;
+  padding-left: 16px;
+
   font-family: "Cormorant Garamond", serif;
-  font-size: 18px;
-  font-weight: 520;
+  font-size: 16px;
+  font-weight: 500;
   line-height: 1.35;
+
+  color: var(--brown);
 }
+
+
+/* LITEN DISKRET PRIKK */
 
 .trainer-details p::before {
   content: "";
+
   position: absolute;
   left: 0;
-  top: .5em;
+  top: 0.55em;
+
   width: 4px;
   height: 4px;
-  border: 1px solid #9b7965;
-  border-radius: 50%;
-}
 
-.trainer-details span {
-  color: var(--brown);
+  border: 1px solid #a98c79;
+  border-radius: 50%;
 }
 
 
@@ -601,7 +647,7 @@ p { font-size: clamp(12px, 1.4vw, 14px); line-height: 1.7; }
 
 .trainer-cta {
   max-width: 650px;
-  margin: 40px auto;
+  margin: 40px auto 15px;
   padding: 28px 40px;
   display: flex;
   align-items: center;
@@ -1130,7 +1176,6 @@ p { font-size: clamp(12px, 1.4vw, 14px); line-height: 1.7; }
   background: var(--backgroundBox);
   border-top: 1px solid #ddd3cc;
   color: var(--brown);
-   margin-top: 40px;
 }
 
 /* HOVEDINNHOLD */
@@ -1140,7 +1185,7 @@ p { font-size: clamp(12px, 1.4vw, 14px); line-height: 1.7; }
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  padding:5px 0 4px;
+  padding:10px 0 20px;
 }
 
 /* ALLE KOLONNER */
@@ -1157,7 +1202,7 @@ p { font-size: clamp(12px, 1.4vw, 14px); line-height: 1.7; }
 .footer-address,
 .footer-contact {
   border-left: 1px solid #ddd3cc;
-  height: 50px;
+  height: 70px;
   align-self: center;
 }
 

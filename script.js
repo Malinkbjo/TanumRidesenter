@@ -111,311 +111,136 @@ if (track) {
      KARUSELL
   ========================= */
 
-let carouselIndex = 0;
+/* =========================
+   KARUSELL – INFINITE LOOP
+========================= */
 
-function getCenteredImageIndex() {
-  const trackCenter =
-    track.scrollLeft + track.clientWidth / 2;
+const originalSlides = [...triggers];
+const slideCount = originalSlides.length;
 
-  let closestIndex = 0;
-  let closestDistance = Infinity;
+let visualIndex = slideCount;
+let isMoving = false;
 
-  triggers.forEach((trigger, index) => {
-    const imageCenter =
-      trigger.offsetLeft + trigger.offsetWidth / 2;
 
-    const distance =
-      Math.abs(imageCenter - trackCenter);
+/* Lager én kopi av alle bildene foran og bak */
+originalSlides.forEach((slide, index) => {
+  slide.dataset.originalIndex = index;
+});
 
-    if (distance < closestDistance) {
-      closestDistance = distance;
-      closestIndex = index;
-    }
-  });
+for (let i = slideCount - 1; i >= 0; i--) {
+  const clone = originalSlides[i].cloneNode(true);
 
-  return closestIndex;
+  clone.classList.add("carousel-clone");
+  clone.dataset.originalIndex = i;
+
+  track.prepend(clone);
+}
+
+originalSlides.forEach((slide, index) => {
+  const clone = slide.cloneNode(true);
+
+  clone.classList.add("carousel-clone");
+  clone.dataset.originalIndex = index;
+
+  track.appendChild(clone);
+});
+
+
+/* Alle slides: kopier + ekte bilder + kopier */
+const allSlides = [
+  ...track.querySelectorAll(".carousel-image-trigger")
+];
+
+
+function getCarouselStep() {
+  const firstSlide = allSlides[0];
+
+  if (!firstSlide) return 0;
+
+  const styles = getComputedStyle(track);
+
+  const gap =
+    parseFloat(styles.columnGap) ||
+    parseFloat(styles.gap) ||
+    0;
+
+  return firstSlide.getBoundingClientRect().width + gap;
 }
 
 
-function scrollToCarouselImage(index) {
-  carouselIndex =
-    (index + triggers.length) % triggers.length;
+/* Flytt uten animasjon */
+function jumpTo(index) {
+  visualIndex = index;
 
-  triggers[carouselIndex].scrollIntoView({
-    behavior: "smooth",
-    block: "nearest",
-    inline: "center"
+  const step = getCarouselStep();
+
+  track.style.scrollBehavior = "auto";
+  track.scrollLeft = visualIndex * step;
+
+  requestAnimationFrame(() => {
+    track.style.scrollBehavior = "smooth";
   });
+}
+
+
+/* Start på første EKTE bilde */
+requestAnimationFrame(() => {
+  jumpTo(slideCount);
+});
+
+
+function moveCarousel(direction) {
+  if (isMoving) return;
+
+  isMoving = true;
+  visualIndex += direction;
+
+  const step = getCarouselStep();
+
+  track.scrollTo({
+    left: visualIndex * step,
+    behavior: "smooth"
+  });
+
+
+  /*
+    Når vi har bladd inn i kopiene,
+    hopper vi usynlig tilbake til tilsvarende ekte bilde.
+  */
+  setTimeout(() => {
+
+    /* Kopiene etter siste ekte bilde */
+    if (visualIndex >= slideCount * 2) {
+      visualIndex -= slideCount;
+      jumpTo(visualIndex);
+    }
+
+    /* Kopiene før første ekte bilde */
+    else if (visualIndex < slideCount) {
+      visualIndex += slideCount;
+      jumpTo(visualIndex);
+    }
+
+    isMoving = false;
+
+  }, 450);
 }
 
 
 nextBtn.addEventListener("click", () => {
-  const currentIndex = getCenteredImageIndex();
-
-  scrollToCarouselImage(currentIndex + 1);
+  moveCarousel(1);
 });
 
 
 prevBtn.addEventListener("click", () => {
-  const currentIndex = getCenteredImageIndex();
-
-  scrollToCarouselImage(currentIndex - 1);
+  moveCarousel(-1);
 });
 
 
-
-
-  /* =========================
-     VIS BILDE
-  ========================= */
-
-  function showLightboxImage(index) {
-  currentImage = (index + images.length) % images.length;
-
-  const image = images[currentImage];
-
-  lightboxImage.src = image.src;
-  lightboxImage.alt = image.alt;
-  lightboxCaption.textContent = image.dataset.caption || "";
-}
-
-
-  /* =========================
-     ÅPNE LIGHTBOX
-  ========================= */
-
-  triggers.forEach((trigger, index) => {
-
-    trigger.addEventListener("click", () => {
-
-      lastFocusedElement = trigger;
-
-      showLightboxImage(index);
-
-      lightbox.classList.add("open");
-
-      /* flytt fokus til lukk-knappen */
-      lightboxClose.focus();
-    });
-
-  });
-
-
-  /* =========================
-     LUKK LIGHTBOX
-  ========================= */
-
-  function closeLightbox() {
-
-    lightbox.classList.remove("open");
-
-    /* returner fokus til bildet som åpnet lightboxen */
-    if (lastFocusedElement) {
-      lastFocusedElement.focus();
-    }
-  }
-
-  lightboxClose.addEventListener("click", closeLightbox);
-
-  lightbox.addEventListener("click", (event) => {
-    if (event.target === lightbox) {
-      closeLightbox();
-    }
-  });
-
-
-  /* =========================
-     NESTE / FORRIGE
-  ========================= */
-
-  lightboxNext.addEventListener("click", () => {
-    showLightboxImage(currentImage + 1);
-  });
-
-  lightboxPrev.addEventListener("click", () => {
-    showLightboxImage(currentImage - 1);
-  });
-
-
-  /* =========================
-     TASTATUR
-  ========================= */
-
-  document.addEventListener("keydown", (event) => {
-
-    if (!lightbox.classList.contains("open")) return;
-
-
-    /* Escape lukker */
-    if (event.key === "Escape") {
-      closeLightbox();
-    }
-
-
-    /* Piltaster blar */
-    if (event.key === "ArrowRight") {
-      showLightboxImage(currentImage + 1);
-    }
-
-    if (event.key === "ArrowLeft") {
-      showLightboxImage(currentImage - 1);
-    }
-
-
-    /* Hold Tab inne i lightboxen */
-    if (event.key === "Tab") {
-
-      const focusableElements = [
-        lightboxClose,
-        lightboxPrev,
-        lightboxNext
-      ];
-
-      const firstElement = focusableElements[0];
-      const lastElement =
-        focusableElements[focusableElements.length - 1];
-
-
-      /* Shift + Tab fra første → siste */
-      if (
-        event.shiftKey &&
-        document.activeElement === firstElement
-      ) {
-        event.preventDefault();
-        lastElement.focus();
-      }
-
-      /* Tab fra siste → første */
-      else if (
-        !event.shiftKey &&
-        document.activeElement === lastElement
-      ) {
-        event.preventDefault();
-        firstElement.focus();
-      }
-    }
-
-  });
-
-}
-
-const expandableTriggers = [
-  ...document.querySelectorAll(".expandable-image-trigger")
-];
-
-const imageLightbox = document.querySelector("#imageLightbox");
-
-if (expandableTriggers.length && imageLightbox) {
-
-  const lightboxPhoto =
-    imageLightbox.querySelector(".image-lightbox-photo");
-
-  const lightboxCaption =
-    imageLightbox.querySelector(".image-lightbox-caption");
-
-  const closeButton =
-    imageLightbox.querySelector(".image-lightbox-close");
-
-  const prevButton =
-    imageLightbox.querySelector(".image-lightbox-prev");
-
-  const nextButton =
-    imageLightbox.querySelector(".image-lightbox-next");
-
-  let currentIndex = 0;
-  let lastFocusedElement = null;
-
-
-  /* =========================
-     VIS BILDE
-  ========================= */
-
-  function showImage(index) {
-
-    currentIndex =
-      (index + expandableTriggers.length) %
-      expandableTriggers.length;
-
-    const trigger = expandableTriggers[currentIndex];
-
-    const image =
-      trigger.querySelector(".expandable-image");
-
-    const card = trigger.closest(".card");
-
-    const title = card.querySelector("h3");
-
-
-    lightboxPhoto.src = image.src;
-    lightboxPhoto.alt = image.alt;
-
-    lightboxCaption.textContent = title.textContent;
-  }
-
-
-  /* =========================
-     ÅPNE
-  ========================= */
-
-  expandableTriggers.forEach((trigger, index) => {
-
-    trigger.addEventListener("click", () => {
-
-      /* husk bildet som åpnet lightboxen */
-      lastFocusedElement = trigger;
-
-      showImage(index);
-
-      imageLightbox.classList.add("open");
-
-      /* flytt fokus til X */
-      closeButton.focus();
-    });
-
-  });
-
-
-  /* =========================
-     LUKK
-  ========================= */
-
-  function closeImageLightbox() {
-
-    imageLightbox.classList.remove("open");
-
-    /* tilbake til bildet som åpnet lightboxen */
-    if (lastFocusedElement) {
-      lastFocusedElement.focus();
-    }
-  }
-
-  closeButton.addEventListener(
-    "click",
-    closeImageLightbox
-  );
-
-
-  /* Klikk på mørk bakgrunn */
-  imageLightbox.addEventListener("click", (event) => {
-
-    if (event.target === imageLightbox) {
-      closeImageLightbox();
-    }
-
-  });
-
-
-  /* =========================
-     NESTE / FORRIGE
-  ========================= */
-
-  nextButton.addEventListener("click", () => {
-    showImage(currentIndex + 1);
-  });
-
-  prevButton.addEventListener("click", () => {
-    showImage(currentIndex - 1);
-  });
+/* Behold riktig plassering når skjermen endrer størrelse */
+window.addEventListener("resize", () => {
+  jumpTo(visualIndex);
+});
 
 
   /* =========================
