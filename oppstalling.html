@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oppstalling | Tanum Ridesenter</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="responsive.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link
+  rel="preload"
+  as="image"
+  href="pictures/kurstall3.jpg"
+  fetchpriority="high"
+>
+ 
+</head>
+<body>
+  <header class="site-header">
+    <button class="menu-button" aria-label="Åpne meny" aria-expanded="false">☰</button>
+
+    <a class="mobile-logo-link" href="index.html" aria-label="Til forsiden">
+      <img src="pictures/logoR.png" alt="Tanum Ridesenter logo" />
+    </a>
+
+    <nav class="nav" aria-label="Hovedmeny">
+      <a  href="index.html">Hjem</a>
+      <a class="active" href="oppstalling.html" aria-current="page">Oppstalling</a>
+      <a class="logo-link" href="index.html" aria-hidden="true"tabindex="-1">
+        <img src="pictures/logoR.png" alt="Tanum Ridesenter logo" />
+      </a>
+      <a  href="undervisning.html">Undervisning</a>
+      <a  href="kontakt.html">Kontakt</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" style="background-image:url('pictures/kurstall3.jpg')">
+      <div class="hero-content reveal">
+        <h1>Oppstalling</h1>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <h2 class="reveal">Våre fasiliteter</h2>
+       <div class="heading-decoration" aria-hidden="true">
+          <span class="heading-decoration-line"></span>
+          <span class="heading-decoration-dot"></span>
+          <span class="heading-decoration-line"></span>
+        </div>
+      <p class="intro reveal-on-load">Hos oss får du tilgang til moderne fasiliteter og et engasjert ryttermiljø. 
+        Anlegget har to separate staller med romslige bokser med vinduer, vaske- og pusseplass og tørkerom. 
+        Kür-stallen har i tillegg solarium, mens Ridehus-stallen ligger praktisk til vegg i vegg med ridehuset.</p>
+      <br>
+
+      <div class="grid">
+        <article class="card reveal">
+          <button class="expandable-image-trigger" type="button" aria-label="Vis større bilde av Kür-stallen">
+            <img  src="pictures/kurstall2.jpg" class="expandable-image" alt="Kür-stallen">
+          </button>
+          <h3>Kür-stallen</h3>
+          <p>Lyse, romslige bokser med vinduer.</p>
+        </article>
+        <article class="card reveal">
+          <button class="expandable-image-trigger" type="button" aria-label="Vis større bilde av paddocker">
+            <img  src="pictures/paddock3.jpg" class="expandable-image" alt="Paddocker" loading="lazy" decoding="async">
+          </button>
+          <h3>Paddocker</h3>
+          <p>Individuelle paddocker for hestene.</p>
+        </article>
+        <article class="card reveal">
+          <button class="expandable-image-trigger" type="button" aria-label="Vis større bilde av longeringsgropen">
+            <img  src="pictures/rundpaddock.jpg" class="expandable-image" alt="Longeringsgrop" loading="lazy" decoding="async">
+          </button>
+          <h3>Longeringsgrop</h3>
+          <p>For trygg longering og arbeid fra bakken.</p>
+        </article>
+        <article class="card reveal">
+          <button class="expandable-image-trigger" type="button" aria-label="Vis større bilde av ridehus-stallen">
+            <img  src="pictures/ridehusstall3.jpg" class="expandable-image" alt="Ridehus-stallen" loading="lazy" decoding="async">
+          </button>
+          <h3>Ridehus-stallen</h3>
+          <p>Rolige bokser med enkel tilgang til ridehus.</p>
+          </article>
+        <article class="card reveal">
+          <button class="expandable-image-trigger" type="button" aria-label="Vis større bilde av ridehus">
+            <img  src="pictures/ridehus.jpg" class="expandable-image" alt="Ridehus" loading="lazy" decoding="async">
+          </button>
+          <h3>Ridehuset</h3>
+          <p>20 x 60 meter isolert ridehus.</p>
+        </article>
+        <article class="card reveal">
+          <button class="expandable-image-trigger" type="button" aria-label="Vis større bilde av utebanen">
+            <img  src="pictures/utebane.jpg" class="expandable-image" alt="Utebanen" loading="lazy" decoding="async">
+          </button>
+          <h3>Utebanen</h3>
+          <p>Stor utendørs ridebane i naturskjønne omgivelser.</p>
+        </article>
+        <article class="card reveal">
+          <button class="expandable-image-trigger" type="button" aria-label="Vis større bilde av solarium">
+            <img  src="pictures/solarium.jpg" class="expandable-image" alt="Solarium" loading="lazy" decoding="async">
+          </button>
+          <h3>Solarium</h3>
+          <p>Solarium for hestens velvære.</p>
+        </article>
+        <article class="card reveal">
+          <button class="expandable-image-trigger" type="button" aria-label="Vis større bilde av vaskespilt">
+            <img  src="pictures/vaskespilt.jpg" class="expandable-image" alt="Vaskespilt" loading="lazy" decoding="async">
+          </button>
+          <h3>Vaskespilt</h3>
+          <p>Vaskespilt med varmtvann.</p>
+        </article>
+      </div>
+
+      <div class="about-text intro reveal">
+        <h2 reveal>Området</h2>
+        <p> Tanum ridesenter ligger fantastisk til på Tanum i Bærum, helt ved markagrensen. 
+          På anlegget finner du fine og varierte turstier, og Vestmarka ligger kun en skrittetur unna med et stort utvalg av turmuligheter. </p>
+      </div>
+  
+  <div class="gallery-carousel">
+    <button class="carousel-btn prev" type="button" aria-label="Forrige bilde">
+      &#10094;
+    </button>
+    <div class="carousel-track">
+
+      <button class="carousel-image-trigger" type="button" aria-label="Vis større bilde av tursti">
+        <img src="pictures/natur2.jpg" alt="Turstier rundt stallen"  data-caption="Tursti på anlegget" loading="lazy" decoding="async">
+      </button>
+      <button class="carousel-image-trigger" type="button" aria-label="Vis større bilde av tursti">
+        <img src="pictures/nature1.jpg" alt="Turstier rundt stallen"  data-caption="Tursti på anlegget" loading="lazy" decoding="async">
+      </button>
+      <button class="carousel-image-trigger" type="button" aria-label="Vis større bilde av tursti">
+        <img src="pictures/natur3.jpg" alt="Turstier rundt stallen"  data-caption="Tursti på annlegget" loading="lazy" decoding="async">
+      </button>
+      <button class="carousel-image-trigger" type="button" aria-label="Vis større bilde av tursti">
+        <img src="pictures/natur4.jpg" alt="Tursti ved Jordbru" data-caption="Fine turstier i Vestmarka" loading="lazy" decoding="async">
+      </button>
+    </div>
+    <button class="carousel-btn next" type="button" aria-label="Neste bilde">
+      &#10095;
+    </button>
+    </div>
+
+    <!-- LIGHTBOX -->
+    <div
+  class="lightbox"
+  id="lightbox"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Bildefremvisning"
+>
+  <button
+    class="lightbox-close"
+    type="button"
+    aria-label="Lukk bildefremvisning"
+  >
+    &times;
+  </button>
+
+  <button
+    class="lightbox-arrow lightbox-prev"
+    type="button"
+    aria-label="Forrige bilde">&#10094;</button>
+
+  <img class="lightbox-image" src="" alt="">
+  <p class="lightbox-caption"></p>
+
+  <button
+    class="lightbox-arrow lightbox-next"
+    type="button"
+    aria-label="Neste bilde"> &#10095; </button>
+</div>
+
+   <!-- VIL DU VITE MER -->
+  <div class="trainer-cta">
+    <div class="trainer-cta-text">
+      <h3>Vil du vite mer?</h3>
+      <p>
+        Ta gjerne kontakt dersom du ønsker mer informasjon.
+      </p>
+    </div>
+
+    <a href="kontakt.html" class="trainer-cta-btn">
+      Kontakt oss
+    </a>
+  </div>
+    </section>
+</main>
+
+  <div
+  class="image-lightbox"
+  id="imageLightbox"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Bildefremvisning"
+>
+
+  <button
+    class="image-lightbox-close"
+    type="button"
+    aria-label="Lukk bildefremvisning"
+  >
+    &times;
+  </button>
+
+  <button
+    class="image-lightbox-arrow image-lightbox-prev"
+    type="button"
+    aria-label="Forrige bilde"
+  >
+    &#10094;
+  </button>
+
+    <figure class="image-lightbox-content">
+    <img class="image-lightbox-photo" src="" alt="">
+    <figcaption class="image-lightbox-caption"></figcaption>
+  </figure>
+
+  <button
+    class="image-lightbox-arrow image-lightbox-next"
+    type="button"
+    aria-label="Neste bilde"
+  >
+    &#10095;
+  </button>
+
+</div>
+
+  <footer class="site-footer">
+  <div class="footer-inner">
+    <!-- VENSTRE: TANUM RIDESENTER -->
+    <div class="footer-column footer-brand">
+
+      <img
+        src="pictures/logoR.png"
+        alt=""
+        class="footer-horse">
+      <h3>Tanum Ridesenter</h3>
+    </div>
+
+    <!-- MIDTEN: ADRESSE -->
+    <div class="footer-column footer-address">
+      <img
+        src="pictures/location.svg"
+        alt="location"
+        class="footer-location-icon"
+      >
+      <p>
+        Vestmarkveien 89,
+        1341 Slependen
+      </p>
+    </div>
+
+
+    <!-- HØYRE: KONTAKT -->
+    <div class="footer-column footer-contact">
+
+      <a href="tel:+4791372546">
+        <img src="pictures/phone.svg" alt="phone">
+        <span>+47 913 72 546</span>
+      </a>
+
+      <a href="mailto:post@tanumridesenter.no">
+        <img src="pictures/email.svg" alt="email">
+        <span>post@tanumridesenter.no</span>
+      </a>
+    </div>
+  </div>
+</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

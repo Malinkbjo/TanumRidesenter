@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kontakt | Tanum Ridesenter</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="responsive.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link
+  rel="preload"
+  as="image"
+  href="pictures/natur4.jpg"
+  fetchpriority="high"
+>
+
+</head>
+<body>
+  <header class="site-header">
+    <button class="menu-button" aria-label="Åpne meny" aria-expanded="false">☰</button>
+
+    <a class="mobile-logo-link" href="index.html" aria-label="Til forsiden">
+      <img src="pictures/logoR.png" alt="Tanum Ridesenter logo" />
+    </a>
+
+    <nav class="nav" aria-label="Hovedmeny">
+      <a  href="index.html">Hjem</a>
+      <a  href="oppstalling.html">Oppstalling</a>
+      <a class="logo-link" href="index.html" aria-hidden="true"tabindex="-1">
+        <img src="pictures/logoR.png" alt="Tanum Ridesenter logo" />
+      </a>
+      <a  href="undervisning.html">Undervisning</a>
+      <a class="active" href="kontakt.html" aria-current="page" >Kontakt</a>
+    </nav>
+  </header>
+
+  <main>
+
+  <section class="hero" style="background-image:url('pictures/natur4.jpg')">
+    <div class="hero-content reveal">
+      <h1>Kontakt oss</h1>
+    </div>
+  </section>
+
+  <section class="page-section contact-page">
+
+  <div class="contact-heading reveal-on-load">
+    <h2>Vi ser frem til å høre fra deg!</h2>
+  </div>
+
+  <div class="contact-box">
+
+    <div class="contact-people">
+
+      <!-- ARILD -->
+      <div class="contact-person reveal">
+        <h3>Arild Johansen</h3>
+        <p class="contact-role">Driftsansvarlig</p>
+
+        <div class="contact-details">
+          <a href="tel:+4791372546">
+            <span class="contact-icon"><img src="pictures/phone.svg" alt="phone"></span>
+            <span>+47 913 72 546</span>
+          </a>
+
+          <a href="mailto:arild.johansen@elektro-term.no">
+            <span class="contact-icon"><img src="pictures/email.svg" alt="email"></span>
+            <span>Arild.johansen@elektro-term.no</span>
+          </a>
+        </div>
+      </div>
+
+
+      <!-- ANKI -->
+      <div class="contact-person reveal">
+        <h3>Anki Bjørnstadjordet</h3>
+        <p class="contact-role">Stallansvarlig</p>
+
+        <div class="contact-details">
+          <a href="tel:+4791240721">
+            <span class="contact-icon"><img src="pictures/phone.svg" alt="phone"></span>
+            <span>+47 912 40 721</span>
+          </a>
+
+          <a href="mailto:ankibjornstadjordet@gmail.com">
+            <span class="contact-icon"><img src="pictures/email.svg" alt="email"></span>
+            <span>Ankibjornstadjordet@gmail.com</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- ADRESSE -->
+    <div class="contact-address reveal">
+      <span class="address-icon"><img src="pictures/location.svg" alt="location"></span>
+      <p>Vestmarkveien 89, 1341 Slependen</p>
+    </div>
+
+
+    <!-- KART -->
+    <div class="contact-map reveal">
+      <iframe
+        title="Kart over Tanum Ridesenter"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d982.6004551131103!2d10.458237172938611!3d59.88749490068116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46411500618034b9%3A0x239e0dc823ad8d5d!2sTanum%20Ridesenter!5e1!3m2!1sno!2sno!4v1782481776571!5m2!1sno!2sno"
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="strict-origin-when-cross-origin">
+      </iframe>
+    </div>
+
+  </div>
+
+</section>
+    
+  </main>
+
+  <footer class="site-footer">
+  <div class="footer-inner">
+    <!-- VENSTRE: TANUM RIDESENTER -->
+    <div class="footer-column footer-brand">
+
+      <img
+        src="pictures/logoR.png"
+        alt="hest"
+        class="footer-horse">
+      <h3>Tanum Ridesenter</h3>
+    </div>
+
+    <!-- MIDTEN: ADRESSE -->
+    <div class="footer-column footer-address">
+      <img
+        src="pictures/location.svg"
+        alt="location"
+        class="footer-location-icon"
+      >
+      <p>
+        Vestmarkveien 89,
+        1341 Slependen
+      </p>
+    </div>
+
+
+    <!-- HØYRE: KONTAKT -->
+    <div class="footer-column footer-contact">
+
+      <a href="tel:+4791372546">
+        <img src="pictures/phone.svg" alt="phone">
+        <span>+47 913 72 546</span>
+      </a>
+
+      <a href="mailto:post@tanumridesenter.no">
+        <img src="pictures/email.svg" alt="email">
+        <span>Post@tanumridesenter.no</span>
+      </a>
+    </div>
+  </div>
+</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

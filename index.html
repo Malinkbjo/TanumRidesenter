@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hjem | Tanum Ridesenter</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="responsive.css" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+<link
+  rel="preload"
+  as="image"
+  href="pictures/utsidestall3.jpg"
+  fetchpriority="high"
+>
+
+
+</head>
+
+<body>
+  <header class="site-header">
+    <button class="menu-button" aria-label="Åpne meny" aria-expanded="false">☰</button>
+
+    <a class="mobile-logo-link" href="index.html" aria-label="Til forsiden">
+      <img src="pictures/logoR.png" alt="Tanum Ridesenter logo" />
+    </a>
+
+    <nav class="nav" aria-label="Hovedmeny">
+      <a  href="index.html" class="active" aria-current="page">Hjem</a>
+      <a  href="oppstalling.html">Oppstalling</a>
+       <a class="logo-link" href="index.html" aria-hidden="true" tabindex="-1">
+        <img src="pictures/logoR.png" alt="Tanum Ridesenter logo" />
+      </a>
+      <a  href="undervisning.html">Undervisning</a>
+      <a  href="kontakt.html">Kontakt</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" style="background-image:url('pictures/utsidestall3.jpg')">
+      <div class="hero-content reveal">
+        <h1>Tanum Ridesenter</h1>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <p class="intro reveal-on-load">Hos oss får du tilgang til moderne fasiliteter, profesjonell undervisning og et engasjert ryttermiljø. Vi tilbyr alt du trenger for å utvikle deg sammen med din hest.</p>
+
+      <article class="split home-feature reveal">
+        <img src="pictures/kurstallHest.jpg" alt="Utebane ved Tanum Ridesenter" loading="lazy" decoding="async">
+
+        <div>
+          <h2>Oppstalling</h2>
+          <p>Vi tilbyr oppstalling i romslige bokser, med daglig utslipp i individuelle paddocker og fire föringer om dagen. Her får du tilgang til 20 x 60 meter isolert ridehus, stor utebane og rundpaddock, samt fine ridestier rett fra stallen.</p>
+          <a class="btn" href="oppstalling.html">Les mer</a>
+        </div>
+      </article>
+
+      <article class="split home-feature reveal">
+        <img src="pictures/undervisning.jpg" alt="Ridehus ved Tanum Ridesenter" loading="lazy" decoding="async">
+        <div>
+          <h2>Undervisning</h2>
+          <p>Vi tilbyr undervisning med dyktige og erfarne trenere for ryttere på alle nivåer, med solid fagkompetanse og stort engasjement for utvikling og hestevelferd.</p>
+          <a class="btn" href="undervisning.html">Les mer</a>
+        </div>
+      </article>
+
+      <article class="split home-feature reveal">
+        <img src="pictures/utebane.png" alt="Rytter på utebanen" loading="lazy" decoding="async">
+
+        <div>
+          <h2>Tanum Rideklubb</h2>
+          <p>Tanum Rideklubb har sin base på Tanum Ridesenter og arrangerer jevnlig stevner og programtreninger for klubbens medlemmer.</p>
+          <a class="btn" href="https://tanumrideklubb.no/" target="_blank">Les mer</a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <!-- VENSTRE: TANUM RIDESENTER -->
+    <div class="footer-column footer-brand">
+
+      <img
+        src="pictures/logoR.png"
+        alt=""
+        class="footer-horse">
+      <h3>Tanum Ridesenter</h3>
+    </div>
+
+    <!-- MIDTEN: ADRESSE -->
+    <div class="footer-column footer-address">
+      <img
+        src="pictures/location.svg"
+        alt="location"
+        class="footer-location-icon"
+      >
+      <p>
+        Vestmarkveien 89,
+        1341 Slependen
+      </p>
+    </div>
+
+
+    <!-- HØYRE: KONTAKT -->
+    <div class="footer-column footer-contact">
+
+      <a href="tel:+4791372546">
+        <img src="pictures/phone.svg" alt="phone">
+        <span>+47 913 72 546</span>
+      </a>
+
+      <a href="mailto:post@tanumridesenter.no">
+        <img src="pictures/email.svg" alt="email">
+        <span>post@tanumridesenter.no</span>
+      </a>
+    </div>
+  </div>
+</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

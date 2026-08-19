@@ -1,0 +1,1077 @@
+/* =========================================================
+   TANUM RIDESENTER â€“ RESPONSIVE
+   Desktop-stil ligger i style.css.
+   Denne filen hÃ¥ndterer laptop/iPad/mobil.
+========================================================= */
+
+/* Sikrer at media aldri presser siden bredere enn viewport */
+img,
+svg,
+iframe {
+  max-width: 100%;
+}
+
+/* =========================================================
+   MINDRE DESKTOP / IPAD LANDSCAPE
+   ca. 1024â€“1180 px
+========================================================= */
+
+@media (max-width: 1180px) {
+
+  .nav {
+    gap: clamp(30px, 4vw, 55px);
+  }
+  
+
+  .page-section {
+    width: 94%;
+    padding-left: clamp(24px, 4vw, 48px);
+    padding-right: clamp(24px, 4vw, 48px);
+  }
+
+  .intro {
+    max-width: 75%;
+  }
+
+  /* Trenerne: 2 x 2 pÃ¥ iPad / smÃ¥ laptops */
+  .trainer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    max-width: 900px;
+  }
+
+  /* Kontakt */
+  .contact-page {
+    width: 94%;
+  }
+
+  .contact-person {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .contact-details a {
+    font-size: 16px;
+  }
+
+  /* Footer fÃ¥r litt mer plass til e-postadressen */
+  .footer-inner {
+    width: 94%;
+    grid-template-columns: .9fr .9fr 1.2fr;
+  }
+
+  .footer-contact a {
+    min-width: 0;
+  }
+
+  /* Om oss â€“ 2 bilder synlig i karusellen */
+  .carousel-track {
+    grid-auto-columns: calc((100% - 24px) / 2);
+  }
+}
+
+
+/* =========================================================
+   IPAD PORTRAIT / STORE NETTBRETT
+   820â€“1024 px
+========================================================= */
+
+@media (max-width: 1024px) {
+
+  /* Hero skal ikke bli 80vh pÃ¥ nettbrett */
+  .hero {
+    height: 52vh;
+    min-height: 380px;
+    max-height: 540px;
+  }
+
+  .page-section {
+    width: 94%;
+    padding-top: 52px;
+    padding-bottom: 52px;
+  }
+
+  .intro {
+    max-width: 82%;
+  }
+
+  /* Forsiden: behold to kolonner sÃ¥ lenge det er plass,
+     men mindre gap og litt mindre typografi */
+  .split {
+    gap: 32px;
+    margin-bottom: 54px;
+  }
+
+  .home-feature h2 {
+    font-size: 24px;
+  }
+
+  .home-feature p {
+    font-size: 17px;
+  }
+
+  /* Fasiliteter â€“ 2 kolonner er ideelt pÃ¥ iPad */
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 30px 24px;
+  }
+
+  /* CTA */
+  .trainer-cta {
+    max-width: 720px;
+  }
+
+  /* Kontakt */
+  .contact-box {
+    max-width: 860px;
+  }
+
+  .contact-map iframe {
+    height: 420px;
+  }
+
+  /* Lightbox */
+  .lightbox,
+  .image-lightbox {
+    padding: 45px 58px;
+  }
+}
+
+
+/* =========================================================
+   IPAD PORTRAIT + MOBILMENY
+   820 px og ned
+========================================================= */
+
+@media (max-width: 820px) {
+
+  /* ---------- HEADER ---------- */
+
+  .site-header {
+    min-height: 72px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: none;
+  }
+
+  .menu-button {
+    display: block;
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    background: transparent;
+  }
+
+  .mobile-logo-link {
+    display: block;
+    position: relative;
+    z-index: 2;
+  }
+
+  .mobile-logo-link img {
+    width: 76px;
+    max-height: 58px;
+    object-fit: contain;
+  }
+
+  .logo-link {
+    display: none;
+  }
+
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    height: auto;
+    min-height: unset;
+    gap: 0;
+    padding: 10px 22px 18px;
+
+    background: rgba(250, 248, 246, .98);
+    border-bottom: none;
+    box-shadow: 0 14px 30px rgba(55, 29, 16, .08);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-8px);
+
+    transition:
+      opacity .25s ease,
+      transform .25s ease,
+      visibility .25s ease;
+  }
+
+  .nav a {
+    width: min(100%, 420px);
+    padding: 14px 10px;
+    text-align: center;
+    font-size: 16px;
+  }
+
+  .nav a::after,
+.nav a:hover::after,
+.nav a.active::after {
+  display: none;
+}
+
+  .nav.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  /* ---------- HERO ---------- */
+
+  .hero {
+    height: 46vh;
+    min-height: 330px;
+    max-height: 470px;
+  }
+
+  .hero h1 {
+    font-size: clamp(28px, 6vw, 40px);
+  }
+
+  /* ---------- GENERELT INNHOLD ---------- */
+
+  .page-section {
+    width: 100%;
+    padding: 44px 28px;
+  }
+
+  .page-section > h2 {
+    font-size: clamp(25px, 5vw, 31px);
+  }
+
+  .heading-decoration {
+    margin-bottom: 25px;
+  }
+
+  .intro {
+    max-width: 680px;
+    width: 100%;
+    margin-bottom: 40px;
+    font-size: 17px;
+  }
+
+  /* ---------- FORSIDE ---------- */
+
+  .split {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-bottom: 50px;
+  }
+
+  /* Bildet skal alltid komme fÃ¸rst pÃ¥ mobil/nettbrett */
+  .split img,
+  .split:nth-child(odd) img,
+  .split:nth-child(even) img {
+    order: 0;
+  }
+
+  .split > div {
+    order: 1;
+  }
+
+  .home-feature h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+  }
+
+  .home-feature p {
+    max-width: none;
+    font-size: 16px;
+  }
+
+  .home-feature {
+    margin-bottom: 0;
+     margin-bottom: 45px;
+  }
+
+  /* ---------- OPPSTALLING ---------- */
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px 18px;
+  }
+
+  .card h3 {
+    font-size: 20px;
+  }
+
+  .card p {
+    font-size: 15px;
+  }
+
+  /* ---------- OM OSS / KARUSELL ---------- */
+
+  .about-text {
+    max-width: 680px;
+  }
+
+  .about-text p {
+    font-size: 17px;
+  }
+
+  .gallery-carousel {
+    position: relative;
+    width: 100%;
+    margin: 35px auto 0;
+  }
+
+  .carousel-track {
+    display: grid;
+    grid-auto-flow: column;
+
+    /* 2 bilder synlige */
+    grid-auto-columns: calc((100% - 24px) / 2);
+    gap: 24px;
+
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .carousel-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .carousel-image-trigger {
+    scroll-snap-align: start;
+  }
+  .carousel-image-trigger img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  /* PILENE */
+  .carousel-btn {
+    position: absolute;
+
+    /* midt på bildehøyden */
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 46px;
+    height: 46px;
+    margin: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 20;
+  }
+  .carousel-btn.prev {
+    left: 16px;
+  }
+
+  .carousel-btn.next {
+    right: 16px;
+  }
+  /* ---------- TRENERE ---------- */
+
+  .trainer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    max-width: 760px;
+  }
+
+  .trainer-content {
+    padding: 22px 20px;
+  }
+
+  .trainer-content h3 {
+    font-size: 23px;
+  }
+
+  .trainer-title,
+  .trainer-description,
+  .trainer-details p {
+    font-size: 14px;
+  }
+
+  .trainer-cta {
+    max-width: 760px;
+    padding: 26px 30px;
+    gap: 28px;
+  }
+
+  .trainer-cta-text {
+    padding-left: 20px;
+  }
+
+  /* ---------- KONTAKT ---------- */
+
+  .contact-page {
+    width: 100%;
+  }
+
+  .contact-heading {
+    margin-bottom: 30px;
+  }
+
+  .contact-people {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .contact-person {
+    min-height: 230px;
+    padding: 30px 20px;
+  }
+
+  .contact-person h3 {
+    font-size: 24px;
+  }
+
+  .contact-role {
+    font-size: 18px;
+  }
+
+  .contact-details {
+    width: 100%;
+    padding: 6px 0;
+  }
+
+  .contact-details a {
+    width: 100%;
+    grid-template-columns: 22px minmax(0, 1fr);
+    gap: 10px;
+    font-size: 14px;
+    overflow-wrap: anywhere;
+  }
+
+  .contact-icon img {
+    width: 19px;
+    height: 19px;
+  }
+
+  .contact-address {
+    min-height: 82px;
+    padding: 20px 24px;
+  }
+
+  .contact-address p {
+    font-size: 15px;
+  }
+
+  .contact-map iframe {
+    height: 360px;
+  }
+
+  /* ---------- FOOTER ---------- */
+
+  .footer-inner {
+    width: 92%;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 10px 0;
+    margin: 0 auto;
+    display: grid;
+  }
+
+  .footer-column {
+    min-height: auto;
+    height: auto;
+    padding: 18px 10px;
+  }
+
+  .footer-address,
+  .footer-contact {
+    height: auto;
+    border-top: 0;
+    border-left: 1px solid var(--line);
+  }
+
+  /* kontakt */
+  .footer-contact {
+    gap: 10px;
+    text-align: left;
+  }
+
+  .footer-contact a {
+    width: auto;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: 18px auto;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    text-align: left;
+  }
+
+  .footer-address p {
+    margin: 0;
+    font-size: 12px;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .footer-brand h3 {
+    margin: 0;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .footer-contact a img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
+  /* adresse */
+  .footer-location-icon {
+    width: 24px;
+    height: 24px;
+    margin: 0 0 6px;
+  }
+
+  /* ---------- LIGHTBOX ---------- */
+
+  .lightbox,
+  .image-lightbox {
+    padding: 56px 20px 28px;
+  }
+
+  .lightbox-image,
+  .image-lightbox-photo {
+    max-width: 92vw;
+    max-height: 75vh;
+  }
+
+  .lightbox-arrow,
+  .image-lightbox-arrow {
+    width: 42px;
+    height: 42px;
+  }
+
+  .lightbox-prev,
+  .image-lightbox-prev {
+    left: 8px;
+  }
+
+  .lightbox-next,
+  .image-lightbox-next {
+    right: 8px;
+  }
+
+  /* CTA brukt andre steder */
+  .info-cta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25px;
+    padding: 30px 26px;
+  }
+
+  .info-cta-text {
+    padding-left: 20px;
+  }
+
+  .info-cta-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+
+/* =========================================================
+   MOBIL
+   600 px og ned
+========================================================= */
+
+@media (max-width: 600px) {
+
+  body {
+    letter-spacing: .015em;
+  }
+
+  .nav {
+    border-bottom: none;
+  }
+
+  .nav a::after,
+  .nav a:hover::after,
+  .nav a.active::after {
+    display: none;
+  }
+
+  .site-header {
+    min-height: 66px;
+    border-bottom: none;
+  }
+
+  .mobile-logo-link img {
+    width: 68px;
+    max-height: 52px;
+  }
+
+  .menu-button {
+    left: 12px;
+    padding: 10px 12px;
+    font-size: 23px;
+  }
+
+  .hero {
+    height: 40vh;
+    min-height: 270px;
+    max-height: 360px;
+    background-position: center;
+     position: relative;
+    display: grid;
+    place-items: center;
+    /* viktig: hero selv bestemmer sentrum */
+    text-align: center;
+  }
+  .hero-content {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 20px;
+    text-align: center;
+  }
+
+  h1,
+  h2,
+  h3 {
+    letter-spacing: .09em;
+  }
+
+  .hero h1 {
+     width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0 15px;
+    text-align: center;
+    font-size: clamp(30px, 8vw, 42px);
+    line-height: 1.1;
+    font-size: clamp(25px, 8vw, 34px);
+    padding-inline: 12px;
+  }
+
+  .page-section {
+    padding: 36px 18px;
+  }
+
+  .page-section > h2 {
+    font-size: 26px;
+    margin-bottom: 15px;
+  }
+
+  .heading-decoration-line {
+    width: 35px;
+  }
+
+  .heading-decoration {
+    margin-top: 8px;
+    margin-bottom: 24px;
+  }
+
+  .intro,
+  .about-text p {
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  /* ---------- FORSIDE ---------- */
+
+  .split {
+    gap: 18px;
+    margin-bottom: 42px;
+  }
+
+  .split img,
+  .card img {
+    aspect-ratio: 4 / 3;
+  }
+
+  .home-feature h2 {
+    font-size: 22px;
+  }
+
+  .home-feature p {
+    font-size: 15.5px;
+    margin-bottom: 18px;
+  }
+
+  .btn {
+    padding: .9em 1.1em;
+  }
+
+  /* ---------- FASILITETER ---------- */
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .card h3 {
+    font-size: 20px;
+    margin-top: 2px;
+  }
+
+  .card p {
+    font-size: 15px;
+  }
+
+  /* ---------- OM OSS ---------- */
+
+  .about-text {
+    margin-bottom: 35px;
+  }
+
+  /* -------------------------
+     KARUSELL
+  ------------------------- */
+
+  .gallery-carousel {
+    position: relative;
+    width: 100%;
+    margin: 35px auto 0;
+    overflow: hidden;
+  }
+
+  .carousel-track {
+    display: flex;
+    width: 100%;
+    gap: 0;
+
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+
+    scrollbar-width: none;
+    padding: 0;
+  }
+
+   .carousel-track::-webkit-scrollbar {
+    display: none;
+  }
+  .carousel-image-trigger {
+    flex: 0 0 100%;
+    width: 100%;
+    min-width: 100%;
+
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+
+  .carousel-image-trigger img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 30px;
+    height: 30px;
+    margin: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+
+  .carousel-btn.prev {
+    left: 15px;
+  }
+
+  .carousel-btn.next {
+    right: 15px;
+  }
+
+  /* ---------- TRENERE ---------- */
+
+  .trainer-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    max-width: 480px;
+  }
+
+  .trainer-card {
+    border-radius: 8px;
+  }
+
+  .trainer-content {
+    padding: 24px 22px;
+  }
+
+  .trainer-content h3 {
+    font-size: 24px;
+  }
+
+  .trainer-title {
+    font-size: 13px;
+  }
+
+  .trainer-description,
+  .trainer-details p {
+    font-size: 15px;
+  }
+
+  .trainer-cta {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 26px 22px;
+    gap: 22px;
+  }
+
+  .trainer-cta-text {
+    padding-left: 18px;
+  }
+
+  .trainer-cta-text h3 {
+    font-size: 24px;
+  }
+
+  .trainer-cta-text p br {
+    display: none;
+  }
+
+  .trainer-cta-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* ---------- KONTAKT ---------- */
+
+  .contact-heading h2 {
+    font-size: 27px;
+  }
+
+  .contact-people {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .contact-person {
+    min-height: 0;
+    padding: 30px 20px;
+  }
+
+  .contact-person h3 {
+    font-size: 25px;
+  }
+
+  .contact-role {
+    margin-bottom: 18px;
+    font-size: 17px;
+  }
+
+  .contact-details {
+    max-width: 100%;
+  }
+
+  .contact-details a {
+    font-size: 14px;
+    padding-bottom: 10px;
+  }
+
+  .contact-address {
+    margin-top: 18px;
+    min-height: 76px;
+    padding: 18px 16px;
+    gap: 12px;
+  }
+
+  .address-icon img {
+    width: 23px;
+    height: 23px;
+  }
+
+  .contact-address p {
+    font-size: 13px;
+    letter-spacing: .08em;
+    line-height: 1.45;
+  }
+
+  .contact-map {
+    margin-top: 18px;
+  }
+
+  .contact-map iframe {
+    height: 300px;
+  }
+
+  /* ---------- FOOTER ---------- */
+
+  /* -------------------------
+     FOOTER
+     Først HER blir den vertikal
+  ------------------------- */
+  .footer-inner {
+    width: 88%;
+    grid-template-columns: 1fr;
+    padding: 0 0;
+  }
+
+  .footer-column {
+    min-height: auto;
+    padding: 10px 0px;
+  }
+
+  .footer-address,
+  .footer-contact {
+    height: auto;
+    border-left: 0;
+    border-top: 1px solid #ddd3cc;
+
+  }
+
+  .footer-brand h3 {
+    font-size: 12px;
+    margin: 5px 0 5px;
+  }
+
+  .footer-brand p,
+  .footer-address p {
+    font-size: 12px;
+  }
+
+  .footer-contact a {
+    font-size: 13px;
+    text-align: left;
+  }
+
+  .footer-horse {
+    width: 42px;
+    height: 42px;
+  }
+
+  .footer-location-icon {
+    width: 27px;
+    height: 27px;
+  }
+
+  /* ---------- LIGHTBOX ---------- */
+
+  .image-lightbox-caption {
+    font-size: 16px;
+  }
+
+  .lightbox-close,
+  .image-lightbox-close {
+    top: 10px;
+    right: 14px;
+    font-size: 36px;
+  }
+}
+
+
+/* =========================================================
+   SMÃ… MOBILER
+   390 px og ned
+========================================================= */
+
+@media (max-width: 390px) {
+
+  .page-section {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .hero {
+    min-height: 245px;
+  }
+  .nav {
+    border-bottom: none;
+  }
+
+  .nav a {
+    font-size: 15px;
+  }
+
+  .intro,
+  .about-text p {
+    font-size: 15px;
+  }
+
+  .contact-details a {
+    font-size: 13px;
+    gap: 8px;
+  }
+
+  .contact-address p {
+    font-size: 12px;
+  }
+
+  .trainer-content {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .footer-contact a {
+    font-size: 12px;
+  }
+
+  .carousel-track {
+    grid-auto-columns: 92%;
+  }
+}
+
+
+/* =========================================================
+   LAV LANDSCAPE-SKJERM
+   f.eks. mobil snudd sidelengs
+========================================================= */
+
+@media (max-height: 500px) and (orientation: landscape) {
+
+  .hero {
+    height: 78vh;
+    min-height: 260px;
+    max-height: 390px;
+  }
+
+  .nav {
+    max-height: calc(100vh - 66px);
+    overflow-y: auto;
+  }
+}
+
+
+/* =========================
+   Reduserer bevegelse WCAG
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .reveal,
+    .reveal-on-load {
+        opacity: 1;
+        transform: none;
+    }
+}

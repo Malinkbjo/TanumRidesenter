@@ -1,0 +1,1263 @@
+:root {
+  --header-height: 4rem;
+  /*--brown: #3d2d28;*/
+  --brown: #371d10;
+  --line: #ded8d4;
+  --background: #faf8f6;
+  --backgroundBox: #f4f0ec;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--brown);
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+img { max-width: 100%; display: block; }
+html, body { width: 100%; min-height: 100%; overflow-x: hidden; }
+
+.site-header,
+main {
+  width: 100%;
+  margin: 0;
+  background: var(--background);
+}
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+
+  border-bottom: 1px solid var(--line);
+  background: var(--background);
+
+  transition:
+    transform .5s ease,
+    background .35s ease,
+    box-shadow .35s ease,
+    border-color .35s ease;
+}
+.logo-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-link img {
+  width: 4rem;
+  display: block;
+}
+
+.site-header.hide {
+  transform: translateY(-100%);
+}
+
+.site-header.scrolled {
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(61, 45, 40, 0.08);
+}
+
+.nav {
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 50px;
+
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+}
+
+.nav a {
+  color: var(--brown);
+  text-decoration: none;
+  white-space: nowrap;
+  position: relative;
+  font-size: larger;
+    /* gjør Cormorant Garamond visuelt tykkere */
+  -webkit-text-stroke: 0.5px currentColor;
+  transition: opacity .25s ease;
+}
+
+.nav a:hover { 
+  opacity: .8;  
+  transform: scale(1.08); 
+}
+
+.nav a::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  width: 0;
+  height: 1px;
+  transform: translateX(-50%);
+  transition: width .25s ease;
+  background: var(--brown);
+  opacity: .3;
+}
+
+.nav a:hover::after,
+.nav a.active::after { width: 100%; }
+
+.logo-link::after { display: none; }
+.mobile-logo-link { display: none; }
+.mobile-logo-link img { width: 86px; }
+.logo-link img {
+   width: 5.4rem; 
+   display: block;
+  }
+
+.menu-button {
+  display: none;
+  border: 0;
+  background: white;
+  color: var(--brown);
+  padding: 14px 18px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.hero {
+  height: 80vh;
+  min-height: clamp(300px, 48vw, 560px);
+
+  display: grid;
+  place-items: center;
+
+  text-align: center;
+  color: white;
+
+  background-size: cover;
+  background-position: center;
+
+  position: relative;
+}
+.hero h1 {
+  transform: translateY(28px);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+
+  /* kompenserer for fixed header */
+  transform: translateY(2rem);
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.50);
+}
+
+
+.hero h1::before {
+  content: "";
+  position: absolute;
+
+  /* større enn selve teksten */
+  inset: -35px -70px;
+
+background: radial-gradient(
+  ellipse at center,
+  rgba(0, 0, 0, 0.50) 0%,
+  rgba(0, 0, 0, 0.32) 35%,
+  rgba(0, 0, 0, 0.09) 60%,
+  rgba(0, 0, 0, 0) 82%
+);
+  z-index: -1;
+  pointer-events: none;
+} 
+h1, h2, h3 {
+  margin-top: 0;
+  font-family:'Cormorant Garamond', serif;
+  /* gjør Cormorant Garamond visuelt tykkere */
+  -webkit-text-stroke: 0.4px currentColor;
+  text-transform: uppercase;
+  letter-spacing: .09em;
+  font-weight: 700;
+}
+
+h1 { font-size: clamp(22px, 4vw, 40px); line-height: 1.15; }
+h2 { font-size: clamp(15px, 2.2vw, 25px); text-align: center;}
+h3 { font-size: clamp(13px, 1.6vw, 16px); }
+
+.home-feature h2 {
+  text-align: left;
+  font-size: clamp(18px, 2.2vw, 26px);
+  letter-spacing: .09em;
+  margin-bottom: .8em;
+}
+
+.home-feature p {
+  font-size: clamp(14px, 1.5vw, 19px);
+  max-width: 780px;
+  margin-bottom: 24px;
+  font-weight: 530;
+}
+
+
+.hero p { margin: 0; font-size: clamp(12px, 1.6vw, 15px); }
+
+.page-section {
+  width: 90%;
+  max-width: none;
+  margin: 0 auto;
+  padding: clamp(34px, 7vw, 76px) clamp(20px, 7vw, 86px);
+}
+
+.page-section > h2 {
+  font-size: clamp(24px, 2.8vw, 34px);
+  font-weight: 700;
+  letter-spacing: .08em;
+  margin-bottom: 22px;
+}
+
+.heading-decoration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+  margin: 10px auto 32px;
+}
+
+.heading-decoration-line {
+  width: 50px;
+  height: 1px;
+  background: #cbb7a8;
+}
+
+.heading-decoration-dot {
+  width: 5px;
+  height: 5px;
+  background: transparent;
+  border: 1px solid #b99882;
+  transform: rotate(45deg);
+}
+.intro {
+  text-align: center;
+  max-width: 70%;
+  margin: 0 auto clamp(34px, 6vw, 60px);
+  line-height: 1.7;
+  font-size: clamp(15px, 1.5vw, 20px);
+  font-weight: 600;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(24px, 5vw, 54px);
+  align-items: center;
+  padding-bottom:  55px;
+}
+
+.split:nth-child(odd) img { order: 2; }
+
+.split img,
+.card img,
+.gallery img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  height: auto;
+  object-fit: cover;
+}
+
+p { font-size: clamp(12px, 1.4vw, 14px); line-height: 1.7; }
+
+.btn {
+  display: inline-block;
+  border: 1px solid var(--brown);
+  padding: 1em 1.2em;
+  color: white;
+  background: var(--brown);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 0.87em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .25s ease, color .25s ease, transform .25s ease;
+}
+
+.btn:hover { transform: translateY(-2px);
+    opacity: .85; }
+.card { transition: transform .25s ease; }
+.card:hover { transform: translateY(-4px); }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(26px, 5vw, 48px);
+}
+
+.card img { margin-bottom: 12px; }
+.card p { margin-top: 0; font-size: clamp(15px, 1.3vw, 12px); }
+.card h3 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(20px, 2vw, 22px);
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin: 0 0 3px;
+}
+
+.card p {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(14px, 1.4vw, 17px);
+  font-weight: 580;
+  line-height: 1.5;
+
+  margin: 0;
+}
+
+.gallery-carousel {
+  position: relative;
+  max-width: 1500px;
+  margin: 55px auto 0;
+}
+
+.carousel-track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 48px) / 3);
+  gap: 24px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  scroll-snap-type: x mandatory;
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-track img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition:
+    transform .25s ease,
+    opacity .25s ease;
+}
+
+.carousel-track img:hover {
+  transform: scale(1.015);
+  opacity: .9;
+}
+
+
+/* PILER */
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 46px;
+  height: 46px;
+
+  border: none;
+  border-radius: 50%;
+
+  /* gjennomsiktig hvit */
+  background: rgba(255, 255, 255, 0.65);
+  color: var(--brown);
+
+  font-size: 20px;
+  cursor: pointer;
+
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+
+  transition:
+    background .25s ease,
+    transform .25s ease;
+}
+
+.carousel-btn:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-50%) scale(1.05);
+}
+
+/* legger pilene OPPÅ bildene */
+.carousel-btn.prev {
+  left: 16px;
+}
+
+.carousel-btn.next {
+  right: 16px;
+}
+
+/* LIGHTBOX */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, .82);
+  padding: 60px;
+}
+
+.lightbox.open {
+  display: flex;
+}
+
+.lightbox-image {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 22px;
+  right: 30px;
+  border: 0;
+  background: none;
+  color: white;
+  font-size: 42px;
+  cursor: pointer;
+}
+
+.lightbox-caption {
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%);
+
+  margin: 0;
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  letter-spacing: .03em;
+}
+
+.lightbox-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 0;
+  background: rgba(255,255,255,.12);
+  color: white;
+  width: 48px;
+  height: 48px;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.lightbox-prev {
+  left: 25px;
+}
+
+.lightbox-next {
+  right: 25px;
+}
+
+.contact-grid,
+.trainers-section {
+  padding: 70px clamp(25px, 7vw, 110px) 80px;
+  color: var(--brown);
+}
+
+/* TRENERE */
+.trainer-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  margin: 0 auto ;
+}
+
+
+/* KORT */
+
+.trainer-card {
+  width: 100%;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+   min-height: 300px;
+  padding: 32px 36px;
+}
+
+/* BILDE */
+.trainer-image {
+  width: 100%;
+  overflow: hidden;
+}
+
+.trainer-image img {
+  width: 100%;
+  aspect-ratio: 1.2 / 1;
+  object-fit: cover;
+  display: block;
+}
+
+/* TEKSTOMRÅDE */
+.trainer-content {
+  padding: 20px 22px 24px;
+}
+
+/* NAVN */
+.trainer-content h3 {
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(21px, 1.7vw, 26px);
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.05;
+  letter-spacing: .02em;
+  text-transform: none;
+  color: var(--brown);
+}
+
+.trainer-title {
+  margin: 5px 0 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--brown);
+  opacity: 90%;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+/* BESKRIVELSE */
+.trainer-description {
+  margin: 0 0 16px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 18px;
+  font-weight: 520;
+  line-height: 1.55;
+  color: var(--brown);
+}
+
+/* DETALJER */
+.trainer-details {
+  padding-top: 15px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.trainer-details p {
+  position: relative;
+  margin: 0;
+  padding-left: 15px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 18px;
+  font-weight: 520;
+  line-height: 1.35;
+}
+
+.trainer-details p::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .5em;
+  width: 4px;
+  height: 4px;
+  border: 1px solid #9b7965;
+  border-radius: 50%;
+}
+
+.trainer-details span {
+  color: var(--brown);
+}
+
+
+/* =========================
+   CTA UNDER TRENERNE
+========================= */
+
+.trainer-cta {
+  max-width: 650px;
+  margin: 40px auto;
+  padding: 28px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  border: 1px solid var(--line);
+  background: #f4f0ec;
+}
+
+.trainer-cta-text {
+  padding-left: 25px;
+  border-left: 1px solid #a98c79;
+}
+
+.trainer-cta-text h3 {
+  margin: 0 0 7px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 26px;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: .02em;
+}
+
+.trainer-cta-text p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.trainer-cta-btn {
+  flex-shrink: 0;
+  padding: 14px 28px;
+  background: var(--brown);
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .14em;
+
+  transition:
+    transform .25s ease,
+    opacity .25s ease;
+}
+
+.trainer-cta-btn:hover {
+  transform: translateY(-2px);
+  opacity: .85;
+}
+
+/* =========================
+   KONTAKTSIDE
+========================= */
+
+.contact-page {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* OVERSKRIFT */
+.contact-heading {
+  text-align: center;
+  margin-bottom: 38px;
+}
+
+.contact-heading h2 {
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(22px, 2.4vw, 30px);
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: none;
+  color: var(--brown);
+  margin-bottom: 25px;
+}
+
+
+/* HELE OMRÅDET */
+.contact-box {
+  max-width: 950px;
+  margin: 0 auto;
+  /* ingen ramme rundt alt */
+  border: none;
+  background: transparent;
+}
+
+
+/* =========================
+   PERSONKORT
+========================= */
+
+.contact-people {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  /* MELLOMROM MELLOM DE TO BOKSENE */
+  gap: 28px;
+}
+
+
+.contact-person {
+  min-height: 245px;
+  padding: 42px 45px 38px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  text-align: center;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+
+/* fjerner den gamle streken mellom kortene */
+
+.contact-person:first-child {
+  border-right: 1px solid var(--line);
+}
+/* NAVN */
+
+.contact-person h3 {
+  margin: 0 0 3px;
+
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(22px, 2vw, 27px);
+  font-weight: 700;
+
+  letter-spacing: .02em;
+  text-transform: none;
+
+  color: var(--brown);
+}
+
+
+/* ROLLE */
+
+.contact-role {
+  margin: 0 0 24px;
+
+  font-family: "Cormorant Garamond", serif;
+  font-size: 20px;
+  font-weight: 600;
+
+  color: var(--brown);
+  opacity: .90;
+}
+
+
+/* TELEFON + E-POST */
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  padding: 10px;
+
+  width: fit-content;
+  max-width: 100%;
+
+  margin: 0 auto;
+
+  text-align: left;
+}
+
+
+.contact-details a {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  align-items: center;
+  gap: 14px;
+
+  color: var(--brown);
+  text-decoration: none;
+  font-family: "Inter", sans-serif;  
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.4;
+  padding-bottom: 14px;
+}
+
+.contact-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 24px;
+  font-size: 20px;
+
+  color: var(--brown);
+}
+
+
+/* =========================
+   ADRESSE
+========================= */
+
+.contact-address {
+  min-height: 95px;
+  /* LUFT MELLOM PERSONKORT OG ADRESSE */
+  margin-top: 28px;
+  padding: 24px 35px;
+  background: #f4f0ec;
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  border-radius: 10px;
+}
+
+
+.contact-address p {
+  margin: 0;
+  font-family: "Inter", sans-serif;  
+  font-size: clamp(15px, 1.6vw, 18px);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .13em;
+  text-align: center;
+}
+
+.address-icon {
+    display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.address-icon img {
+  width: 28px;
+  height: 28px;
+  display: block;
+  object-fit: contain;
+}
+/* =========================
+   KART
+========================= */
+.contact-map {
+  width: 100%;
+  /* LUFT MELLOM ADRESSE OG KART */
+  margin-top: 28px;
+  border: 1px solid var(--line);
+  overflow: hidden;
+  background: #fff;
+  border-radius: 10px;
+}
+
+.contact-map iframe {
+  display: block;
+  width: 100%;
+  height: 500px;
+  border: 0;
+  filter: grayscale(35%) sepia(8%);
+}
+
+.center { text-align: center; margin-top: 42px; }
+
+.info-cta {
+    max-width: 1000px;
+    margin: clamp(60px, 8vw, 100px) auto 0;
+    padding: 38px 55px;
+    background: white;
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+    text-align: left;
+}
+
+.info-cta-text {
+    padding-left: 35px;
+    border-left: 1px solid var(--brown);
+}
+
+.info-cta h2 {
+    text-align: left;
+    margin: 0 0 10px;
+
+    font-size: clamp(20px, 2vw, 27px);
+    text-transform: none;
+    letter-spacing: .08em;
+}
+
+.info-cta p {
+    margin: 0;
+    max-width: 520px;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.info-cta-btn {
+    flex-shrink: 0;
+    background: var(--brown);
+    color: white;
+    padding: 16px 34px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: .15em;
+    font-size: 11px;
+    font-weight: 600;
+    transition: transform .25s ease, opacity .25s ease;
+}
+
+.info-cta-btn:hover {
+    transform: translateY(-2px);
+    opacity: .85;
+}
+
+.about-text {
+  max-width: 780px;
+  margin: 0 auto clamp(42px, 6vw, 70px);
+  text-align: center;
+}
+
+.about-text p {
+  line-height: 1.7;
+  font-size: clamp(15px, 1.5vw, 20px);
+  font-weight: 600;
+  margin: 0 auto 22px;
+}
+
+.about-text h2 {
+  margin: clamp(34px, 5vw, 54px) 0 22px;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .65s ease, transform .65s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+.reveal-on-load {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .65s ease, transform .65s ease;
+}
+
+.reveal-on-load.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Klikkbare bilder - Oppstalling + Om oss */ 
+.expandable-image {
+  cursor: zoom-in;
+}
+
+.expandable-image-trigger {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: zoom-in;
+}
+
+.expandable-image-trigger img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.carousel-image-trigger {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: zoom-in;
+  /* Viktig i karusellen */
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+.carousel-image-trigger img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 0;
+}
+
+/* Kun synlig ved tastaturnavigasjon */
+.carousel-image-trigger:focus-visible {
+  outline: 3px solid var(--brown);
+  outline-offset: 4px;
+}
+
+/* LIGHTBOX */
+
+.image-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  padding: 50px 80px;
+
+  background: rgba(20, 15, 12, 0.88);
+}
+
+.image-lightbox.open {
+  display: flex;
+}
+
+.image-lightbox-content {
+  margin: 0;
+  text-align: center;
+}
+
+.image-lightbox-photo {
+  display: block;
+
+  max-width: 85vw;
+  max-height: 78vh;
+
+  width: auto;
+  height: auto;
+
+  object-fit: contain;
+}
+
+
+/* BILDETEKST */
+
+.image-lightbox-caption {
+  margin-top: 14px;
+
+  color: #fff;
+
+  font-family: "Cormorant Garamond", serif;
+  font-size: 20px;
+  font-weight: 600;
+
+  letter-spacing: .06em;
+}
+
+
+/* LUKK */
+
+.image-lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+
+  border: 0;
+  background: transparent;
+
+  color: white;
+  font-size: 42px;
+
+  cursor: pointer;
+}
+
+
+/* PILER */
+
+.image-lightbox-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 48px;
+  height: 48px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.18);
+  color: white;
+
+  font-size: 22px;
+  cursor: pointer;
+
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+
+  transition: background .2s ease;
+}
+
+.image-lightbox-arrow:hover {
+  background: rgba(255, 255, 255, 0.32);
+}
+
+.image-lightbox-prev {
+  left: 25px;
+}
+
+.image-lightbox-next {
+  right: 25px;
+}
+/* =========================
+   FOOTER
+========================= */
+.site-footer {
+  width: 100%;
+  background: var(--backgroundBox);
+  border-top: 1px solid #ddd3cc;
+  color: var(--brown);
+   margin-top: 40px;
+}
+
+/* HOVEDINNHOLD */
+.footer-inner {
+  width: 90%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding:5px 0 4px;
+}
+
+/* ALLE KOLONNER */
+.footer-column {
+  min-height: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+}
+
+/* SKILLELINJER */
+.footer-address,
+.footer-contact {
+  border-left: 1px solid #ddd3cc;
+  height: 50px;
+  align-self: center;
+}
+
+
+/* =========================
+   VENSTRE - LOGO / TEKST
+========================= */
+.footer-horse {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  margin-bottom: 4px;
+}
+
+
+.footer-brand h3 {
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 17px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .15em;
+  color: var(--brown);
+}
+
+
+.footer-brand p {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--brown);
+}
+
+
+/* INSTAGRAM */
+.footer-instagram {
+  margin-top: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brown);
+  text-decoration: none;
+}
+
+.footer-instagram iconify-icon {
+  font-size: 25px;
+}
+
+.footer-instagram:hover {
+  opacity: .65;
+  transform: translateY(-2px);
+}
+
+
+/* =========================
+   MIDTEN - ADRESSE
+========================= */
+.footer-location-icon {
+  width: 31px;
+  height: 31px;
+  object-fit: contain;
+  margin-bottom: 7px;
+}
+
+
+.footer-address p {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.7;
+  color: var(--brown);
+}
+
+/* =========================
+   HØYRE - KONTAKT
+========================= */
+.footer-contact {
+  gap: 14px;
+}
+
+.footer-contact a {
+  display: grid;
+  grid-template-columns: 24px auto;
+  align-items: center;
+  gap: 15px;
+  min-width: 260px;
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--brown);
+  text-decoration: none;
+  transition: opacity .2s ease;
+}
+
+.footer-contact a:hover {
+  opacity: .65;
+}
+
+.footer-contact iconify-icon {
+  font-size: 21px;
+}
+
+/* =========================
+   TASTATURFOKUS
+   ========================= */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid #371d10;
+  outline-offset: 4px;
+}
+/* Lys fokusmarkering i lightbox */
+.lightbox button:focus-visible,
+.image-lightbox button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 4px;
+}
+
+
+
