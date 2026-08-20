@@ -1,79 +1,72 @@
-const header = document.querySelector('.site-header');
-const nav = document.querySelector('.nav');
-const menuButton = document.querySelector('.menu-button');
+const header = document.querySelector(".site-header");
+const nav = document.querySelector(".nav");
+const menuButton = document.querySelector(".menu-button");
+
+/* =========================
+   HEADER
+========================= */
 
 function updateHeader() {
-  header.classList.toggle('scrolled', window.scrollY > 20);
+  if (!header) return;
+  header.classList.toggle("scrolled", window.scrollY > 20);
 }
-
-/*header scroll */
 
 let lastScroll = 0;
 const threshold = 15;
 const hideAfter = 120;
 
-window.addEventListener("scroll", () => {
-  const currentScroll = window.scrollY;
+window.addEventListener(
+  "scroll",
+  () => {
+    if (!header) return;
 
-  // Skygge/bakgrunn etter litt scroll
-  header.classList.toggle("scrolled", currentScroll > 20);
+    const currentScroll = window.scrollY;
 
-  // Vis alltid header nær toppen
-  if (currentScroll < hideAfter) {
-    header.classList.remove("hide");
+    header.classList.toggle("scrolled", currentScroll > 20);
+
+    if (currentScroll < hideAfter) {
+      header.classList.remove("hide");
+      lastScroll = currentScroll;
+      return;
+    }
+
+    if (Math.abs(currentScroll - lastScroll) < threshold) return;
+
+    if (currentScroll > lastScroll) {
+      header.classList.add("hide");
+    } else {
+      header.classList.remove("hide");
+    }
+
     lastScroll = currentScroll;
-    return;
-  }
+  },
+  { passive: true }
+);
 
-  // Ignorer små bevegelser
-  if (Math.abs(currentScroll - lastScroll) < threshold) return;
 
-  if (currentScroll > lastScroll) {
-    // Scroller ned
-    header.classList.add("hide");
-  } else {
-    // Scroller opp
-    header.classList.remove("hide");
-  }
-
-  lastScroll = currentScroll;
-});
+/* =========================
+   REVEAL
+========================= */
 
 function addRevealAnimations() {
-  const elements = document.querySelectorAll('.reveal');
+  const elements = document.querySelectorAll(".reveal");
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
+  if (!elements.length) return;
 
-  elements.forEach(el => observer.observe(el));
-}
-
-menuButton.addEventListener('click', () => {
-  const isOpen = nav.classList.toggle('open');
-
-  menuButton.setAttribute('aria-expanded', String(isOpen));
-  menuButton.setAttribute(
-    'aria-label',
-    isOpen ? 'Lukk meny' : 'Åpne meny'
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12 }
   );
 
-  menuButton.textContent = isOpen ? '✕' : '☰';
-});
-
-nav.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    nav.classList.remove('open');
-    menuButton.setAttribute('aria-expanded', 'false');
-    menuButton.setAttribute('aria-label', 'Åpne meny');
-    menuButton.textContent = '☰';
-  });
-});
+  elements.forEach((el) => observer.observe(el));
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".reveal-on-load").forEach((el) => {
@@ -83,164 +76,426 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+
+/* =========================
+   MOBILMENY
+========================= */
+
+if (menuButton && nav) {
+  menuButton.addEventListener("click", () => {
+    const isOpen = nav.classList.toggle("open");
+
+    menuButton.setAttribute("aria-expanded", String(isOpen));
+
+    menuButton.setAttribute(
+      "aria-label",
+      isOpen ? "Lukk meny" : "Åpne meny"
+    );
+
+    menuButton.textContent = isOpen ? "✕" : "☰";
+  });
+
+  nav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      nav.classList.remove("open");
+
+      menuButton.setAttribute("aria-expanded", "false");
+      menuButton.setAttribute("aria-label", "Åpne meny");
+      menuButton.textContent = "☰";
+    });
+  });
+}
+
+
+/* =========================================================
+   KARUSELL + KARUSELL-LIGHTBOX
+========================================================= */
+
 const track = document.querySelector(".carousel-track");
 
 if (track) {
-
   const prevBtn = document.querySelector(".carousel-btn.prev");
   const nextBtn = document.querySelector(".carousel-btn.next");
 
-  const triggers = [
-    ...document.querySelectorAll(".carousel-image-trigger")
+  const originalSlides = [
+    ...track.querySelectorAll(".carousel-image-trigger")
   ];
 
-  const images = triggers.map(trigger => trigger.querySelector("img"));
+  const originalImages = originalSlides.map((slide) =>
+    slide.querySelector("img")
+  );
 
   const lightbox = document.querySelector("#lightbox");
-  const lightboxImage = document.querySelector(".lightbox-image");
-  const lightboxClose = document.querySelector(".lightbox-close");
-  const lightboxPrev = document.querySelector(".lightbox-prev");
-  const lightboxNext = document.querySelector(".lightbox-next");
-  const lightboxCaption = document.querySelector(".lightbox-caption");
+  const lightboxImage = lightbox?.querySelector(".lightbox-image");
+  const lightboxClose = lightbox?.querySelector(".lightbox-close");
+  const lightboxPrev = lightbox?.querySelector(".lightbox-prev");
+  const lightboxNext = lightbox?.querySelector(".lightbox-next");
+  const lightboxCaption = lightbox?.querySelector(".lightbox-caption");
 
   let currentImage = 0;
   let lastFocusedElement = null;
 
 
   /* =========================
-     KARUSELL
+     INFINITE KARUSELL
   ========================= */
 
-/* =========================
-   KARUSELL – INFINITE LOOP
-========================= */
+  const slideCount = originalSlides.length;
 
-const originalSlides = [...triggers];
-const slideCount = originalSlides.length;
+  let visualIndex = slideCount;
+  let isMoving = false;
 
-let visualIndex = slideCount;
-let isMoving = false;
-
-
-/* Lager én kopi av alle bildene foran og bak */
-originalSlides.forEach((slide, index) => {
-  slide.dataset.originalIndex = index;
-});
-
-for (let i = slideCount - 1; i >= 0; i--) {
-  const clone = originalSlides[i].cloneNode(true);
-
-  clone.classList.add("carousel-clone");
-  clone.dataset.originalIndex = i;
-
-  track.prepend(clone);
-}
-
-originalSlides.forEach((slide, index) => {
-  const clone = slide.cloneNode(true);
-
-  clone.classList.add("carousel-clone");
-  clone.dataset.originalIndex = index;
-
-  track.appendChild(clone);
-});
+  originalSlides.forEach((slide, index) => {
+    slide.dataset.originalIndex = index;
+  });
 
 
-/* Alle slides: kopier + ekte bilder + kopier */
-const allSlides = [
-  ...track.querySelectorAll(".carousel-image-trigger")
-];
+  /* Kopier foran */
+  if (slideCount > 0) {
+    for (let i = slideCount - 1; i >= 0; i--) {
+      const clone = originalSlides[i].cloneNode(true);
+
+      clone.classList.add("carousel-clone");
+      clone.dataset.originalIndex = i;
+
+      track.prepend(clone);
+    }
 
 
-function getCarouselStep() {
-  const firstSlide = allSlides[0];
+    /* Kopier bak */
+    originalSlides.forEach((slide, index) => {
+      const clone = slide.cloneNode(true);
 
-  if (!firstSlide) return 0;
+      clone.classList.add("carousel-clone");
+      clone.dataset.originalIndex = index;
 
-  const styles = getComputedStyle(track);
-
-  const gap =
-    parseFloat(styles.columnGap) ||
-    parseFloat(styles.gap) ||
-    0;
-
-  return firstSlide.getBoundingClientRect().width + gap;
-}
+      track.appendChild(clone);
+    });
+  }
 
 
-/* Flytt uten animasjon */
-function jumpTo(index) {
-  visualIndex = index;
+  function getCarouselStep() {
+    const firstSlide =
+      track.querySelector(".carousel-image-trigger");
 
-  const step = getCarouselStep();
+    if (!firstSlide) return 0;
 
-  track.style.scrollBehavior = "auto";
-  track.scrollLeft = visualIndex * step;
+    const styles = getComputedStyle(track);
 
+    const gap =
+      parseFloat(styles.columnGap) ||
+      parseFloat(styles.gap) ||
+      0;
+
+    return (
+      firstSlide.getBoundingClientRect().width +
+      gap
+    );
+  }
+
+
+  function jumpTo(index) {
+    const step = getCarouselStep();
+
+    if (!step) return;
+
+    visualIndex = index;
+
+    track.style.scrollBehavior = "auto";
+    track.scrollLeft = visualIndex * step;
+
+    requestAnimationFrame(() => {
+      track.style.scrollBehavior = "smooth";
+    });
+  }
+
+
+  function moveCarousel(direction) {
+    if (isMoving || slideCount === 0) return;
+
+    isMoving = true;
+
+    visualIndex += direction;
+
+    const step = getCarouselStep();
+
+    track.scrollTo({
+      left: visualIndex * step,
+      behavior: "smooth"
+    });
+
+
+    setTimeout(() => {
+
+      /* Etter siste bilde */
+      if (visualIndex >= slideCount * 2) {
+        visualIndex -= slideCount;
+        jumpTo(visualIndex);
+      }
+
+      /* Før første bilde */
+      else if (visualIndex < slideCount) {
+        visualIndex += slideCount;
+        jumpTo(visualIndex);
+      }
+
+      isMoving = false;
+
+    }, 450);
+  }
+
+
+  /* Start på første ekte bilde */
   requestAnimationFrame(() => {
-    track.style.scrollBehavior = "smooth";
+    jumpTo(slideCount);
   });
-}
 
 
-/* Start på første EKTE bilde */
-requestAnimationFrame(() => {
-  jumpTo(slideCount);
-});
-
-
-function moveCarousel(direction) {
-  if (isMoving) return;
-
-  isMoving = true;
-  visualIndex += direction;
-
-  const step = getCarouselStep();
-
-  track.scrollTo({
-    left: visualIndex * step,
-    behavior: "smooth"
+  nextBtn?.addEventListener("click", () => {
+    moveCarousel(1);
   });
+
+
+  prevBtn?.addEventListener("click", () => {
+    moveCarousel(-1);
+  });
+
+
+  window.addEventListener("resize", () => {
+    jumpTo(visualIndex);
+  });
+
+
+  /* =========================
+     KARUSELL LIGHTBOX
+  ========================= */
+
+  function showCarouselImage(index) {
+    if (!originalImages.length || !lightboxImage) return;
+
+    currentImage =
+      (index + originalImages.length) %
+      originalImages.length;
+
+    const image = originalImages[currentImage];
+
+    lightboxImage.src = image.src;
+    lightboxImage.alt = image.alt;
+
+    if (lightboxCaption) {
+      lightboxCaption.textContent =
+        image.dataset.caption || "";
+    }
+  }
 
 
   /*
-    Når vi har bladd inn i kopiene,
-    hopper vi usynlig tilbake til tilsvarende ekte bilde.
+    Fungerer både på originale bilder
+    og kopiene i infinite-karusellen
   */
-  setTimeout(() => {
+  track.addEventListener("click", (event) => {
+    const trigger =
+      event.target.closest(".carousel-image-trigger");
 
-    /* Kopiene etter siste ekte bilde */
-    if (visualIndex >= slideCount * 2) {
-      visualIndex -= slideCount;
-      jumpTo(visualIndex);
+    if (!trigger || !lightbox) return;
+
+    const originalIndex =
+      Number(trigger.dataset.originalIndex);
+
+    if (!Number.isInteger(originalIndex)) return;
+
+    lastFocusedElement = trigger;
+
+    showCarouselImage(originalIndex);
+
+    lightbox.classList.add("open");
+
+    lightboxClose?.focus();
+  });
+
+
+  function closeCarouselLightbox() {
+    lightbox?.classList.remove("open");
+
+    if (lastFocusedElement) {
+      lastFocusedElement.focus();
+    }
+  }
+
+
+  lightboxClose?.addEventListener(
+    "click",
+    closeCarouselLightbox
+  );
+
+
+  lightbox?.addEventListener("click", (event) => {
+    if (event.target === lightbox) {
+      closeCarouselLightbox();
+    }
+  });
+
+
+  lightboxNext?.addEventListener("click", () => {
+    showCarouselImage(currentImage + 1);
+  });
+
+
+  lightboxPrev?.addEventListener("click", () => {
+    showCarouselImage(currentImage - 1);
+  });
+
+
+  document.addEventListener("keydown", (event) => {
+    if (!lightbox?.classList.contains("open")) return;
+
+    if (event.key === "Escape") {
+      closeCarouselLightbox();
     }
 
-    /* Kopiene før første ekte bilde */
-    else if (visualIndex < slideCount) {
-      visualIndex += slideCount;
-      jumpTo(visualIndex);
+    if (event.key === "ArrowRight") {
+      showCarouselImage(currentImage + 1);
     }
 
-    isMoving = false;
-
-  }, 450);
+    if (event.key === "ArrowLeft") {
+      showCarouselImage(currentImage - 1);
+    }
+  });
 }
 
 
-nextBtn.addEventListener("click", () => {
-  moveCarousel(1);
-});
+/* =========================================================
+   FASILITETSBILDER + LIGHTBOX
+========================================================= */
+
+const expandableTriggers = [
+  ...document.querySelectorAll( ".expandable-image-trigger, .expandable-image:not(.expandable-image-trigger .expandable-image)")
+];
+
+const imageLightbox =
+  document.querySelector("#imageLightbox");
 
 
-prevBtn.addEventListener("click", () => {
-  moveCarousel(-1);
-});
+if (expandableTriggers.length && imageLightbox) {
+
+  const lightboxPhoto =
+    imageLightbox.querySelector(".image-lightbox-photo");
+
+  const lightboxCaption =
+    imageLightbox.querySelector(".image-lightbox-caption");
+
+  const closeButton =
+    imageLightbox.querySelector(".image-lightbox-close");
+
+  const prevButton =
+    imageLightbox.querySelector(".image-lightbox-prev");
+
+  const nextButton =
+    imageLightbox.querySelector(".image-lightbox-next");
 
 
-/* Behold riktig plassering når skjermen endrer størrelse */
-window.addEventListener("resize", () => {
-  jumpTo(visualIndex);
-});
+  let currentIndex = 0;
+  let lastFocusedElement = null;
+
+
+  /* =========================
+     VIS BILDE
+  ========================= */
+
+  function showImage(index) {
+
+    currentIndex =
+      (index + expandableTriggers.length) %
+      expandableTriggers.length;
+
+    const trigger =
+      expandableTriggers[currentIndex];
+
+    const image = trigger.matches(".expandable-image")
+  ? trigger
+  : trigger.querySelector(".expandable-image");
+
+    const card =
+      trigger.closest(".card");
+
+    const title =
+      card?.querySelector("h3");
+
+    if (!image || !lightboxPhoto) return;
+
+
+    lightboxPhoto.src = image.src;
+    lightboxPhoto.alt = image.alt;
+
+
+    if (lightboxCaption) {
+      lightboxCaption.textContent =
+        title?.textContent || "";
+    }
+  }
+
+
+  /* =========================
+     ÅPNE
+  ========================= */
+
+  expandableTriggers.forEach((trigger, index) => {
+
+    trigger.addEventListener("click", () => {
+
+      lastFocusedElement = trigger;
+
+      showImage(index);
+
+      imageLightbox.classList.add("open");
+
+      closeButton?.focus();
+    });
+
+  });
+
+
+  /* =========================
+     LUKK
+  ========================= */
+
+  function closeImageLightbox() {
+
+    imageLightbox.classList.remove("open");
+
+    if (lastFocusedElement) {
+      lastFocusedElement.focus();
+    }
+  }
+
+
+  closeButton?.addEventListener(
+    "click",
+    closeImageLightbox
+  );
+
+
+  imageLightbox.addEventListener("click", (event) => {
+
+    if (event.target === imageLightbox) {
+      closeImageLightbox();
+    }
+
+  });
+
+
+  /* =========================
+     NESTE / FORRIGE
+  ========================= */
+
+  nextButton?.addEventListener("click", () => {
+    showImage(currentIndex + 1);
+  });
+
+
+  prevButton?.addEventListener("click", () => {
+    showImage(currentIndex - 1);
+  });
 
 
   /* =========================
@@ -249,16 +504,14 @@ window.addEventListener("resize", () => {
 
   document.addEventListener("keydown", (event) => {
 
-    if (!imageLightbox.classList.contains("open")) return;
+    if (!imageLightbox.classList.contains("open")) {
+      return;
+    }
 
-
-    /* Escape lukker */
     if (event.key === "Escape") {
       closeImageLightbox();
     }
 
-
-    /* Piltaster */
     if (event.key === "ArrowRight") {
       showImage(currentIndex + 1);
     }
@@ -266,45 +519,13 @@ window.addEventListener("resize", () => {
     if (event.key === "ArrowLeft") {
       showImage(currentIndex - 1);
     }
-
-
-    /* Hold Tab inne i lightboxen */
-    if (event.key === "Tab") {
-
-      const focusableElements = [
-        closeButton,
-        prevButton,
-        nextButton
-      ];
-
-      const firstElement = focusableElements[0];
-
-      const lastElement =
-        focusableElements[focusableElements.length - 1];
-
-
-      if (
-        event.shiftKey &&
-        document.activeElement === firstElement
-      ) {
-        event.preventDefault();
-        lastElement.focus();
-      }
-
-      else if (
-        !event.shiftKey &&
-        document.activeElement === lastElement
-      ) {
-        event.preventDefault();
-        firstElement.focus();
-      }
-    }
-
   });
-
 }
 
-window.addEventListener('scroll', updateHeader, { passive: true });
+
+/* =========================
+   START
+========================= */
+
 addRevealAnimations();
 updateHeader();
-
