@@ -90,10 +90,6 @@ main {
   display: block;
 }
 
-.site-header.hide {
-  transform: translateY(-100%);
-}
-
 .site-header.scrolled {
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);

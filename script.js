@@ -11,37 +11,7 @@ function updateHeader() {
   header.classList.toggle("scrolled", window.scrollY > 20);
 }
 
-let lastScroll = 0;
-const threshold = 15;
-const hideAfter = 120;
-
-window.addEventListener(
-  "scroll",
-  () => {
-    if (!header) return;
-
-    const currentScroll = window.scrollY;
-
-    header.classList.toggle("scrolled", currentScroll > 20);
-
-    if (currentScroll < hideAfter) {
-      header.classList.remove("hide");
-      lastScroll = currentScroll;
-      return;
-    }
-
-    if (Math.abs(currentScroll - lastScroll) < threshold) return;
-
-    if (currentScroll > lastScroll) {
-      header.classList.add("hide");
-    } else {
-      header.classList.remove("hide");
-    }
-
-    lastScroll = currentScroll;
-  },
-  { passive: true }
-);
+window.addEventListener("scroll", updateHeader, { passive: true });
 
 
 /* =========================
