@@ -171,6 +171,9 @@ main {
   font-size: 25px;
   cursor: pointer;
 }
+.menu-button img{
+  width: 1em;
+}
 
 .hero {
   height: clamp(420px, 42vw, 650px);
@@ -1298,13 +1301,17 @@ p { font-size: clamp(12px, 1.4vw, 14px); line-height: 1.7; }
 .footer-contact {
   padding-top: 10px;
   gap: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .footer-contact a {
   display: grid;
-  grid-template-columns: 24px auto;
+  grid-template-columns: 28px auto;
   align-items: center;
   gap: 15px;
+  width: max-content;
   min-width: 260px;
   font-family: "Lora", serif;
   font-size: 18px;
@@ -1312,6 +1319,19 @@ p { font-size: clamp(12px, 1.4vw, 14px); line-height: 1.7; }
   color: var(--brown);
   text-decoration: none;
   transition: opacity .2s ease;
+}
+.footer-contact a img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  justify-self: center;
+}
+
+.footer-contact-inner{
+   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
 }
 
 .footer-contact a:hover {
