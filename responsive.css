@@ -664,7 +664,8 @@ iframe {
   .menu-button {
     left: 12px;
     padding: 10px 12px;
-    font-size: 23px;
+    font-size: 32px;
+  }
   }
 
   .hero {
@@ -728,6 +729,9 @@ iframe {
     margin-top: 8px;
     margin-bottom: 24px;
   }
+  .intro{
+    margin-bottom: 5px;
+  }
 
   .intro,
   .about-text p {
@@ -739,7 +743,8 @@ iframe {
 
   .split {
     gap: 18px;
-    margin-bottom: 42px;
+    margin-bottom: 0;
+    padding-bottom: 15px;
   }
 
   .split img,
@@ -972,7 +977,7 @@ iframe {
 }
 
   .contact-address p {
-    font-size: 12px;
+    font-size: 16px;
     letter-spacing: .08em;
     line-height: 1.45;
   }
@@ -1017,11 +1022,11 @@ iframe {
 
   .footer-brand p,
   .footer-address p {
-    font-size: 12px;
+    font-size: 15px;
   }
 
   .footer-contact a {
-    font-size: 13px;
+    font-size: 15px;
     text-align: left;
   }
 
@@ -1031,8 +1036,8 @@ iframe {
   }
 
   .footer-location-icon {
-    width: 27px;
-    height: 27px;
+    width: 30px;
+    height: 30px;
   }
 
   /* ---------- LIGHTBOX ---------- */
@@ -1047,7 +1052,6 @@ iframe {
     right: 14px;
     font-size: 36px;
   }
-}
 
 
 /* =========================================================
