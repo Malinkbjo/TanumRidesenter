@@ -419,18 +419,14 @@ p { font-size: clamp(12px, 1.4vw, 14px); line-height: 1.7; }
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-
-  width: 46px;
-  height: 46px;
-
+  width:35px;
+  height: 35px;
   border: none;
   border-radius: 50%;
-
   /* gjennomsiktig hvit */
   background: rgba(255, 255, 255, 0.65);
   color: var(--brown);
-
-  font-size: 20px;
+  font-size: 17px;
   cursor: pointer;
 
   z-index: 10;

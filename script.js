@@ -249,22 +249,19 @@ if (track) {
 
 
     setTimeout(() => {
+  if (visualIndex >= slideCount * 2) {
+    visualIndex -= slideCount;
+    jumpTo(visualIndex);
+  }
 
-      /* Etter siste bilde */
-      if (visualIndex >= slideCount * 2) {
-        visualIndex -= slideCount;
-        jumpTo(visualIndex);
-      }
+  else if (visualIndex < slideCount) {
+    visualIndex += slideCount;
+    jumpTo(visualIndex);
+  }
 
-      /* Før første bilde */
-      else if (visualIndex < slideCount) {
-        visualIndex += slideCount;
-        jumpTo(visualIndex);
-      }
+  isMoving = false;
 
-      isMoving = false;
-
-    }, 450);
+}, 900);
   }
 
 
@@ -273,15 +270,38 @@ if (track) {
     jumpTo(slideCount);
   });
 
+  /* =========================
+   AUTOPLAY
+========================= */
+
+let autoplayInterval;
+
+function startAutoplay() {
+  stopAutoplay();
+
+  autoplayInterval = setInterval(() => {
+    moveCarousel(1);
+  }, 4000);
+}
+
+function stopAutoplay() {
+  clearInterval(autoplayInterval);
+}
+
+startAutoplay();
+
 
   nextBtn?.addEventListener("click", () => {
-    moveCarousel(1);
-  });
+  stopAutoplay();
+  moveCarousel(1);
+  startAutoplay();
+});
 
-
-  prevBtn?.addEventListener("click", () => {
-    moveCarousel(-1);
-  });
+prevBtn?.addEventListener("click", () => {
+  stopAutoplay();
+  moveCarousel(-1);
+  startAutoplay();
+});
 
 
   window.addEventListener("resize", () => {
