@@ -165,14 +165,40 @@ main {
 .menu-button {
   display: none;
   border: 0;
-  background: white;
-  color: var(--brown);
-  padding: 14px 18px;
-  font-size: 25px;
-  cursor: pointer;
+  background: transparent;
+  padding: 12px;
+  width: 48px;
+  height: 48px;
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
 }
-.menu-button img{
-  width: 1em;
+
+.menu-line {
+  display: block;
+  width: 27px;
+  height: 2px;
+  background: var(--brown);
+  border-radius: 2px;
+
+  transition:
+    transform 0.35s ease,
+    opacity 0.2s ease;
+}
+
+.menu-button.open .menu-line:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.menu-button.open .menu-line:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.menu-button.open .menu-line:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
 }
 
 .hero {

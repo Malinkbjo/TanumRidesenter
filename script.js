@@ -78,23 +78,22 @@ if (menuButton && nav) {
   menuButton.addEventListener("click", () => {
     const isOpen = nav.classList.toggle("open");
 
+    menuButton.classList.toggle("open", isOpen);
     menuButton.setAttribute("aria-expanded", String(isOpen));
 
     menuButton.setAttribute(
       "aria-label",
       isOpen ? "Lukk meny" : "Åpne meny"
     );
-
-    menuButton.textContent = isOpen ? "✕" : "☰";
   });
 
   nav.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
       nav.classList.remove("open");
+      menuButton.classList.remove("open");
 
       menuButton.setAttribute("aria-expanded", "false");
       menuButton.setAttribute("aria-label", "Åpne meny");
-      menuButton.textContent = "☰";
     });
   });
 }
