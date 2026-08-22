@@ -1,6 +1,7 @@
 const header = document.querySelector(".site-header");
 const nav = document.querySelector(".nav");
 const menuButton = document.querySelector(".menu-button");
+const menuOverlay = document.querySelector(".menu-overlay");
 
 /* =========================
    HEADER

@@ -180,59 +180,142 @@ iframe {
   .logo-link {
     display: none;
   }
+.nav > a.mobile-instagram {
+  width: 100%;
+  align-self: stretch;
 
-  .nav {
-    position: absolute;
-    top: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  margin: 28px 0 0;
+  padding: 24px 0 0;
+
+  border-top: 1px solid var(--line);
+
+  color: var(--brown);
+  text-decoration: none;
+  transform: none;
+}
+
+.nav > a.mobile-instagram img {
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
+  margin: 0;
+}
+
+
+   .nav {
+    position: fixed;
+    top: 0;
     left: 0;
-    right: 0;
+
+    width: 72vw;
+    max-width: 320px;
+    padding: 105px 28px 36px;
+    height: 100dvh;
 
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
 
-    height: auto;
-    min-height: unset;
+    margin: 0;
+    padding: 125px 34px 40px;
     gap: 0;
-    padding: 10px 22px 18px;
 
-    background: rgba(250, 248, 246, .98);
-    border-bottom: none;
-    box-shadow: 0 14px 30px rgba(55, 29, 16, .08);
+    background: var(--background);
+    box-shadow: 12px 0 35px rgba(55, 29, 16, 0.10);
+
+    z-index: 1001;
+
+    /* starter utenfor skjermen */
+    transform: translateX(-105%);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: none;
+
+    transition:
+      transform 0.45s cubic-bezier(.77, 0, .18, 1);
+  }
+
+  .nav.open {
+    transform: translateX(0);
+    pointer-events: auto;
+  }
+
+
+  /* MENYPUNKTER */
+
+  .nav > a:not(.logo-link):not(.mobile-instagram) {
+    width: 100%;
+    padding: 18px 0;
+
+    text-align: left;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+
+    color: var(--brown);
+
+    transform: none;
+  }
+
+
+  /* Fjern desktop-understreker */
+
+  .nav a::after,
+  .nav a:hover::after,
+  .nav a.active::after {
+    display: none;
+  }
+
+
+  /* Aktiv side */
+
+  .nav > a.active:not(.logo-link) {
+    opacity: .7;
+  }
+
+
+  /* Desktop-logo skal ikke inn i menyen */
+
+  .nav .logo-link {
+    display: none;
+  }
+  /* OVERLAY */
+
+  .menu-overlay {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(55, 29, 16, .25);
 
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transform: translateY(-8px);
 
     transition:
-      opacity .25s ease,
-      transform .25s ease,
-      visibility .25s ease;
+      opacity .35s ease,
+      visibility .35s ease;
+
+    z-index: 999;
   }
 
-  .nav a {
-    width: min(100%, 420px);
-    padding: 14px 10px;
-    text-align: center;
-    font-size: 16px;
-  }
-   .nav > a:first-child,
-  .nav > a:last-child {
-    transform: none;
-  }
-
-  .nav a::after,
-.nav a:hover::after,
-.nav a.active::after {
-  display: none;
-}
-
-  .nav.open {
+  .menu-overlay.open {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-    transform: translateY(0);
+  }
+
+
+  /* Hamburger må ligge over sidepanelet */
+
+  .menu-button {
+    z-index: 1002;
   }
 
   /* ---------- HERO ---------- */
@@ -616,6 +699,7 @@ iframe {
     width: 100%;
     text-align: center;
   }
+
 }
 
 
@@ -630,11 +714,6 @@ iframe {
     letter-spacing: .015em;
   }
 
-  .nav {
-    border-bottom: none;
-     align-items: flex-start;
-    padding: 28px 38px 38px;
-  }
   .nav a {
     width: auto;
     text-align: left;
@@ -649,6 +728,26 @@ iframe {
   .nav a:hover::after,
   .nav a.active::after {
     display: none;
+  }
+
+  .nav {
+    width: 72vw;
+    max-width: 320px;
+
+    padding: 105px 28px 36px;
+
+    transform: translateX(-105%);
+  }
+
+  .nav > a:not(.logo-link):not(.mobile-instagram) {
+    font-size: 18px;
+    padding: 16px 0;
+  }
+
+  .menu-button {
+    top: 22px;
+    left: 18px;
+    transform: none;
   }
 
   .site-header {

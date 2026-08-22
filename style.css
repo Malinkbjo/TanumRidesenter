@@ -1353,6 +1353,10 @@ p { font-size: clamp(12px, 1.4vw, 14px); line-height: 1.7; }
   justify-self: center;
 }
 
+.body.menu-open {
+  overflow: hidden;
+}
+
 .footer-contact-inner{
    display: flex;
   flex-direction: column;
