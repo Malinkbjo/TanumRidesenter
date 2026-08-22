@@ -217,6 +217,10 @@ iframe {
     text-align: center;
     font-size: 16px;
   }
+   .nav > a:first-child,
+  .nav > a:last-child {
+    transform: none;
+  }
 
   .nav a::after,
 .nav a:hover::after,
@@ -294,7 +298,9 @@ iframe {
     font-size: 16px;
   }
 
-  .home-feature {
+  .home-feature { 
+    padding-left: 0;
+    padding-right: 0;
     margin-bottom: 0;
      margin-bottom: 45px;
   }
@@ -436,6 +442,10 @@ iframe {
 }
 
 .contact-person {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
   min-width: 0;
   min-height: 230px;
   padding: 25px 24px;
@@ -445,17 +455,22 @@ iframe {
 .contact-person h3 {
   font-size: 21px;
   white-space: nowrap;
+  max-width: 300px;
 }
 
 .contact-role {
   font-size: 16px;
   margin-bottom: 18px;
+  max-width: 300px;
+
 }
 
 .contact-details {
   width: 100%;
   min-width: 0;
   padding: 0;
+  max-width: 300px;
+
 }
 
 /* Telefon + e-post */
@@ -504,7 +519,7 @@ iframe {
   .footer-column {
     min-height: auto;
     height: auto;
-    padding: 18px 10px;
+    padding: 10px 10px;
   }
 
   .footer-address,
@@ -551,8 +566,8 @@ iframe {
   }
   /* adresse */
   .footer-location-icon {
-    width: 24px;
-    height: 24px;
+    width: 40px;
+    height: 40px;
     margin: 0 0 6px;
   }
 
@@ -617,6 +632,17 @@ iframe {
 
   .nav {
     border-bottom: none;
+     align-items: flex-start;
+    padding: 28px 38px 38px;
+  }
+  .nav a {
+    width: auto;
+    text-align: left;
+    padding: 13px 0;
+  }
+  .nav > a:first-child,
+  .nav > a:last-child {
+    transform: none;
   }
 
   .nav a::after,
