@@ -99,7 +99,7 @@ iframe {
      men mindre gap og litt mindre typografi */
   .split {
     gap: 32px;
-    margin-bottom: 54px;
+    margin-bottom: 28px;
   }
 
   .home-feature h2 {
@@ -357,7 +357,7 @@ iframe {
   .split {
     grid-template-columns: 1fr;
     gap: 24px;
-    margin-bottom: 50px;
+    margin-bottom: 28px;
   }
 
   /* Bildet skal alltid komme fÃ¸rst pÃ¥ mobil/nettbrett */
@@ -385,7 +385,6 @@ iframe {
     padding-left: 0;
     padding-right: 0;
     margin-bottom: 0;
-     margin-bottom: 45px;
   }
 
   /* ---------- OPPSTALLING ---------- */
@@ -745,9 +744,10 @@ iframe {
   }
 
   .menu-button {
-    top: 22px;
+     position: absolute;
     left: 18px;
-    transform: none;
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   .site-header {
@@ -838,7 +838,7 @@ iframe {
 
   .split {
     gap: 18px;
-    margin-bottom: 42px;
+    margin-bottom: 0;
   }
 
   .split img,
@@ -1106,6 +1106,7 @@ iframe {
     height: auto;
     border-left: 0;
     border-top: 1px solid #ddd3cc;
+    padding-top: 20px;
 
   }
 
