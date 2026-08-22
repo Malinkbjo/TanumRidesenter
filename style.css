@@ -154,6 +154,11 @@ main {
 .nav a:hover::after,
 .nav a.active::after { width: 100%; }
 
+
+.mobile-instagram {
+  display: none;
+}
+
 .logo-link::after { display: none; }
 .mobile-logo-link { display: none; }
 .mobile-logo-link img { width: 86px; }
