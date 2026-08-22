@@ -782,15 +782,29 @@ p { font-size: clamp(12px, 1.4vw, 14px); line-height: 1.7; }
 
 .contact-people {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-
-  /* MELLOMROM MELLOM DE TO BOKSENE */
-  gap: 28px;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
   position: relative;
+
   padding: 10px 0 42px;
   border-bottom: 1px solid var(--line);
 }
 
+.contact-person {
+  width: 100%;
+  padding: 18px 0 34px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: left;
+}
+
+.contact-person > * {
+  width: 430px;
+  max-width: 80%;
+}
 /* vertikal strek i midten */
 .contact-people::after {
   content: "";
@@ -802,40 +816,13 @@ p { font-size: clamp(12px, 1.4vw, 14px); line-height: 1.7; }
   background: var(--line);
 }
 
-
-.contact-person {
-  min-height: auto;
-  padding: 18px 40px 34px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-
-  text-align: left;
-}
-
-/* Arild – skyv hele innholdet mot midten */
-.contact-person:first-child {
-  align-items: flex-end;
-   padding-right: 0;
-}
-/* Anki – start fra midten */
-.contact-person:last-child {
-  align-items: flex-start;
-}
-/* NAVN */
-
-.contact-person > * {
-  width: 430px;
-  max-width: 100%;
-}
-
 .contact-person h3 {
   margin: 0 0 3px;
 
   font-family: "Cormorant Garamond", serif;
   font-size: clamp(22px, 2vw, 27px);
   font-weight: 700;
-
+  width: 320px;
   letter-spacing: .02em;
   text-transform: none;
 
@@ -850,6 +837,7 @@ p { font-size: clamp(12px, 1.4vw, 14px); line-height: 1.7; }
   font-family: "Cormorant Garamond", serif;
   font-size: 20px;
   font-weight: 600;
+  width: 320px;
   color: var(--brown);
   opacity: .90;
 }
@@ -861,8 +849,7 @@ p { font-size: clamp(12px, 1.4vw, 14px); line-height: 1.7; }
    display: flex;
   flex-direction: column;
   gap: 12px;
-
-  width: 430px;
+  width: 320px;
   max-width: 100%;
   margin: 0;
   padding: 0;          /* fjerner eventuell padding før ikonene */
@@ -1041,14 +1028,25 @@ p { font-size: clamp(12px, 1.4vw, 14px); line-height: 1.7; }
 .reveal {
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity .65s ease, transform .65s ease;
+
+  transition:
+    opacity .7s ease,
+    transform .7s ease;
 }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
 .reveal-on-load {
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity .65s eherase, transform .65s ease;
+
+  transition:
+    opacity .7s ease,
+    transform .7s ease;
 }
 
 .reveal-on-load.visible {

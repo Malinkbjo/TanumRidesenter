@@ -49,9 +49,37 @@ window.addEventListener(
 ========================= */
 
 function addRevealAnimations() {
-  const elements = document.querySelectorAll(".reveal");
 
-  if (!elements.length) return;
+  // Ting som skal komme inn med en gang siden lastes
+  const loadElements = document.querySelectorAll(".reveal-on-load");
+
+  loadElements.forEach((el) => {
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        el.classList.add("visible");
+      }, 150);
+    });
+  });
+
+
+  // Ting som skal komme inn når man scroller
+  const elements = document.querySelectorAll(`
+    .reveal,
+    .home-feature > img,
+    .home-feature > div,
+    .card,
+    .trainer-card,
+    .trainer-cta,
+    .about-text,
+    .gallery-carousel,
+    .contact-person,
+    .contact-address,
+    .contact-map
+  `);
+
+  elements.forEach((el) => {
+    el.classList.add("reveal");
+  });
 
   const observer = new IntersectionObserver(
     (entries) => {
@@ -62,19 +90,14 @@ function addRevealAnimations() {
         }
       });
     },
-    { threshold: 0.12 }
+    {
+      threshold: 0.08,
+      rootMargin: "0px 0px -20px 0px"
+    }
   );
 
   elements.forEach((el) => observer.observe(el));
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".reveal-on-load").forEach((el) => {
-    setTimeout(() => {
-      el.classList.add("visible");
-    }, 150);
-  });
-});
 
 
 /* =========================
