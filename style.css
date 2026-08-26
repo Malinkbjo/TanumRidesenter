@@ -131,10 +131,15 @@ main {
   transform: translateX(22px);
 }
 
+.nav > a:first-child:hover {
+  transform: translateX(22px) scale(1.08);
+}
+
 .nav a:hover { 
   opacity: .8;  
   transform: scale(1.08); 
 }
+
 
 .nav a::after {
   content: '';
