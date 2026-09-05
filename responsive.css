@@ -33,7 +33,6 @@ iframe {
     max-width: 75%;
   }
 
-  /* Trenerne: 2 x 2 pÃ¥ iPad / smÃ¥ laptops */
   .trainer-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 18px;
@@ -56,12 +55,14 @@ iframe {
 
   /* Footer fÃ¥r litt mer plass til e-postadressen */
   .footer-inner {
-    width: 94%;
-    grid-template-columns: .9fr .9fr 1.2fr;
+    width: 96%;
+    grid-template-columns: 1fr 1fr 1fr;
   }
+
 
   .footer-contact a {
     min-width: 0;
+    gap:5px;
   }
 
   /* Om oss â€“ 2 bilder synlig i karusellen */
@@ -93,6 +94,7 @@ iframe {
 
   .intro {
     max-width: 82%;
+    font-size: 20px;
   }
 
   /* Forsiden: behold to kolonner sÃ¥ lenge det er plass,
@@ -349,7 +351,7 @@ iframe {
     max-width: 680px;
     width: 100%;
     margin-bottom: 40px;
-    font-size: 17px;
+    font-size: 18px;
   }
 
   /* ---------- FORSIDE ---------- */
@@ -399,13 +401,18 @@ iframe {
   }
 
   .card p {
-    font-size: 15px;
+    font-size: 16px;
   }
 
   /* ---------- OM OSS / KARUSELL ---------- */
 
   .about-text {
     max-width: 680px;
+  }
+
+  .about-text h3{
+    font-size: 40px;
+    
   }
 
   .about-text p {
@@ -490,7 +497,7 @@ iframe {
   .trainer-title,
   .trainer-description,
   .trainer-details p {
-    font-size: 14px;
+    font-size: 18px;
   }
 
   .trainer-cta {
@@ -501,6 +508,9 @@ iframe {
 
   .trainer-cta-text {
     padding-left: 20px;
+  }
+  .trainer-cta-text p {
+    font-size: 17px;
   }
 
  /* ---------- KONTAKT IPAD ---------- */
@@ -516,11 +526,13 @@ iframe {
 .contact-people {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0;
+  padding-bottom: 0;
 }
 
 /* behold midtstreken */
 .contact-people::after {
   display: block;
+  height: 190px;
 }
 
 .contact-person {
@@ -580,7 +592,7 @@ iframe {
 
 .contact-address p {
   max-width: 100%;
-  font-size: 15px;
+  font-size: 18px;
   white-space: normal;
 }
 
@@ -591,9 +603,9 @@ iframe {
   /* ---------- FOOTER ---------- */
 
   .footer-inner {
-    width: 92%;
+    width: 96%;
     grid-template-columns: 1fr 1fr 1fr;
-    padding: 10px 0;
+    padding: 5px 0;
     margin: 0 auto;
     display: grid;
   }
@@ -624,13 +636,13 @@ iframe {
     grid-template-columns: 18px auto;
     align-items: center;
     gap: 8px;
-    font-size: 12px;
+    font-size: 14px;
     text-align: left;
   }
 
   .footer-address p {
     margin: 0;
-    font-size: 12px;
+    font-size: 14px;
     text-align: center;
     white-space: nowrap;
   }
