@@ -830,7 +830,7 @@ iframe {
 
   .intro,
   .about-text p {
-    font-size: 16px;
+    font-size: 17px;
     line-height: 1.65;
   }
 
@@ -839,6 +839,7 @@ iframe {
   .split {
     gap: 18px;
     margin-bottom: 0;
+    padding-top: 5px;
   }
 
   .split img,
@@ -872,13 +873,18 @@ iframe {
   }
 
   .card p {
-    font-size: 15px;
+    font-size: 16px;
   }
 
   /* ---------- OM OSS ---------- */
 
   .about-text {
     margin-bottom: 35px;
+    text-align: left;
+  }
+   .about-text h2{
+    font-size: 20px;
+    text-align: left;
   }
 
   /* -------------------------
@@ -953,6 +959,7 @@ iframe {
   .trainer-grid {
     grid-template-columns: 1fr;
     gap: 14px;
+    row-gap: 36px;
     max-width: 480px;
   }
 
@@ -969,12 +976,12 @@ iframe {
   }
 
   .trainer-title {
-    font-size: 13px;
+    font-size: 15px;
   }
 
   .trainer-description,
   .trainer-details p {
-    font-size: 15px;
+    font-size: 18px;
   }
 
   .trainer-cta {
@@ -986,6 +993,11 @@ iframe {
 
   .trainer-cta-text {
     padding-left: 18px;
+    
+  }
+  .trainer-cta-text p{
+    font-size: 16px;
+    
   }
 
   .trainer-cta-text h3 {
@@ -1006,6 +1018,7 @@ iframe {
 .contact-people {
   grid-template-columns: 1fr;
   gap: 0;
+  padding-bottom: 0;
 }
 
 /* FJERN DEN VERTIKALE STREKEN */
@@ -1013,21 +1026,33 @@ iframe {
   display: none;
 }
 
+.contact-heading{
+  margin-bottom: 5px;
+}
+.contact-heading h2 {
+  margin-bottom: 0;
+}
+
 /* Hver person får hele bredden */
 .contact-person {
   width: 100%;
   max-width: 100%;
   min-width: 0;
-  padding: 28px 22px;
+  padding: 28px 22px 0;
   margin: 0;
   align-items: flex-start;
   text-align: left;
 }
 
+
 /* Nullstill eventuell fast bredde fra desktop */
 .contact-person > * {
   width: 100%;
   max-width: 100%;
+}
+
+.contact-role {
+  font-size: 16px;
 }
 
 /* Kontaktinfo */
@@ -1053,7 +1078,9 @@ iframe {
   font-size: 12px;
   padding-bottom: 10px;
 }
-
+.contact-role{
+  font-size: 18px;
+}
 /* telefonnummer skal ikke brytes */
 .contact-details a[href^="tel:"] {
   white-space: nowrap;
@@ -1071,7 +1098,7 @@ iframe {
 }
 
   .contact-address p {
-    font-size: 12px;
+    font-size: 15px;
     letter-spacing: .08em;
     line-height: 1.45;
   }
@@ -1110,6 +1137,10 @@ iframe {
 
   }
 
+  .footer-address{
+    padding-top: 5px;
+  }
+
   .footer-brand h3 {
     font-size: 12px;
     margin: 5px 0 5px;
@@ -1117,7 +1148,7 @@ iframe {
 
   .footer-brand p,
   .footer-address p {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .footer-contact a {
