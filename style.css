@@ -1043,6 +1043,25 @@ p { font-size: clamp(12px, 1.4vw, 14px); line-height: 1.7; }
   text-align: center;
 }
 
+.grid + .about-text {
+  width: 100%;
+  max-width: none;
+  margin-top: clamp(38px, 6vw, 60px);
+  padding-top: clamp(30px, 5vw, 44px);
+  border-top: 1px solid var(--line);
+}
+
+.grid + .about-text > * {
+  width: 100%;
+  max-width: 780px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.grid + .about-text h2 {
+  margin-top: 0;
+}
+
 .about-text p {
   line-height: 1.7;
   font-size: clamp(15px, 1.5vw, 20px);
@@ -1394,6 +1413,4 @@ button:focus-visible {
   outline: 3px solid #fff;
   outline-offset: 4px;
 }
-
-
 
