@@ -1457,7 +1457,7 @@ button:focus-visible {
 }
 .footer-pages, .footer-info { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
 .footer-layout h2 {
-  margin: 0 0 12px;
+  margin: 0 0 4px;
   font-size: 19px;
   text-transform: uppercase;
   letter-spacing: .12em;
