@@ -568,11 +568,11 @@ p { font-size: clamp(12px, 1.4vw, 14px); line-height: 1.7; }
 ========================= */
 
 .trainer-grid {
-  width: 100%;
+  width: 90%;
   margin: 50px auto 0;
 
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px;
 }
 
@@ -599,6 +599,11 @@ p { font-size: clamp(12px, 1.4vw, 14px); line-height: 1.7; }
   aspect-ratio: 4 / 3;
   object-fit: cover;
   display: block;
+}
+
+
+.trainer-image-cathrine {
+  object-position: center 38%;
 }
 
 

@@ -970,6 +970,7 @@ iframe {
   /* ---------- TRENERE ---------- */
 
   .trainer-grid {
+    width: 100%;
     grid-template-columns: 1fr;
     gap: 14px;
     row-gap: 36px;
